@@ -3,16 +3,10 @@
 @include mat-core();
 
 $custom-theme-primary: mat-palette($mat-yellow);
-$custom-theme-accent:  mat-palette($mat-grey);
+$custom-theme-accent:  mat-palette($mat-grey, 800);
 $custom-theme-warn:  mat-palette($mat-red);
 
-$custom-theme: mat-light-theme((
-  color: (
-    primary: $custom-theme-primary,
-    accent: $custom-theme-accent,
-    warn: $custom-theme-warn,
-  )
-));
+$custom-theme: mat-light-theme($custom-theme-primary, $custom-theme-accent, $custom-theme-warn);
 
 
 @include angular-material-theme($custom-theme);
