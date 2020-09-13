@@ -5,7 +5,9 @@
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menü</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item routerLink="/home">Home</a>
+      <a mat-list-item routerLink="/home">
+        <div [className]="currentRoute == '/home' ? 'active-page' : 'not-active'">Home</div>
+      </a>
       <a mat-list-item >Flash- Speicher</a>
       <a mat-list-item >HDD Festplatten</a>
     </mat-nav-list>
@@ -20,7 +22,7 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>TOBIAS JUNGBAUER DATENRETTUNGSDIENST</span>
+      <span style="font-size: larger">Tobias Jungbauer Datenrettungsdienst am Ammersee</span>
     </mat-toolbar>
 
 

@@ -26,3 +26,15 @@
 .mat-list-item:hover {
   color: yellow;
 }
+
+.active-page {
+  font-weight: bolder;
+  font-size: larger;
+  color: yellow;
+}
+
+.mat-toolbar {
+  //height: auto;
+  padding-bottom: 15px;
+  padding-top: 15px;
+}
