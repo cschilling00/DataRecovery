@@ -13,6 +13,10 @@
   color: white;
 }
 
+.sidenav-hidden {
+  display: none;
+}
+
 .mat-toolbar.mat-primary {
   position: sticky;
   top: 0;
@@ -37,4 +41,15 @@
   //height: auto;
   padding-bottom: 15px;
   padding-top: 15px;
+  color: white;
+}
+
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+mat-toolbar a {
+  display: inline-block;
+  margin: 0 10px;
 }
