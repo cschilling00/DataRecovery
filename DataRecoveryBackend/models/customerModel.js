@@ -12,9 +12,6 @@ const Customer = mongoose.model('Customer', {
 
 module.exports = { Customer };
 
-// "defectiveDevice":[ {"productdescription": "Festplatte",
-//     "productdescription":"USB- Stick"} ]
-
 // const Customer = mongoose.model('Customer', {
 //     firstName: String,
 //     lastName: String,

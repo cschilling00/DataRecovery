@@ -45,7 +45,8 @@ router.post('/', (req, res) => {
         email: req.body.email,
         city: req.body.city,
         street: req.body.street,
-        houseNumber: req.body.houseNumber
+        houseNumber: req.body.houseNumber,
+        defectiveDevice: req.body.defectiveDevice
     });
 
     customerService.saveNewCustomer(customer, (err, result) => {
@@ -76,6 +77,12 @@ router.delete('/:customerId', (req, res) => {
         }
     })
 });
+
+// Postman Requestbody example:
+// [
+//     {"propertyName": "firstName", "value": "Bobbly"},
+//     {"propertyName": "lastName", "value": "Bauller"}
+// ]
 
 router.patch('/:customerId', (req, res) => {
     const id = req.params.customerId;
