@@ -1,15 +1,13 @@
 const mongoose = require('mongoose');
 
 const Customer = mongoose.model('Customer', {
-    firstName: { type: String, required: true },
-    lastName: { type: String, required: true },
-    tel: { type: Number, required: true },
-    email: { type: String, required: true },
-    city: { type: String, required: true },
-    street: { type: String, required: true },
-    houseNumber: { type: String, required: true },
-    defectiveDevice: [ { type: String, required: true } ]
-    // defectiveDevice: [{productdescription: String} ]
+    firstName: { type: String},
+    lastName: { type: String},
+    tel: { type: Number},
+    email: { type: String},
+    city: { type: String},
+    street: { type: String},
+    houseNumber: { type: String}
 });
 
 module.exports = { Customer };

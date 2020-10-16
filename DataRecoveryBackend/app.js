@@ -6,6 +6,8 @@ dotenv.config({ path: './config/app.env'});
 
 const { mongoose } = require('./db.js')
 const customerController = require('./controllers/customerController');
+const productController = require('./controllers/productController');
+const orderController = require('./controllers/orderController');
 
 const app = express();
 
@@ -15,14 +17,16 @@ app.use( bodyParser.json());
 
 
 app.use('/customers', customerController);
+app.use('/products', productController);
+app.use('/orders', orderController);
 
 app.use(function(req, res) {
   res.status(404);
   res.send('Route does not exist');
 });
 
-app.listen(process.env.NODE_PORT, () => {
-  console.log(`App listening at http://localhost:${process.env.NODE_PORT}`)
+app.listen(3000, () => {
+  console.log(`App listening at http://localhost:3000`)
 });
 
 
