@@ -4,19 +4,17 @@ const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 dotenv.config({ path: './config/app.env'});
 
-const { mongoose } = require('./models/db.js')
-const echoController = require('./controllers/echo');
-const logger = require('./util/logger')
+const { mongoose } = require('./db.js')
+const customerController = require('./controllers/customerController');
 
 const app = express();
 
 
 
-app.use(bodyParser.json());
-app.use(logger.logToConsole);
+app.use( bodyParser.json());
 
 
-app.use('/echo', echoController);
+app.use('/customers', customerController);
 
 app.use(function(req, res) {
   res.status(404);
