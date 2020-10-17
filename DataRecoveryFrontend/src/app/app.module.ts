@@ -16,7 +16,7 @@ import { HomeComponent } from './home/home.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
-
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -38,7 +38,8 @@ import { MatMenuModule } from '@angular/material/menu';
         FontAwesomeModule,
         MatGridListModule,
         MatCardModule,
-        MatMenuModule
+        MatMenuModule,
+        HttpClientModule
     ],
   providers: [],
   bootstrap: [AppComponent]

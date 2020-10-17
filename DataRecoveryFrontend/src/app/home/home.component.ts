@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
+import {Observable} from 'rxjs';
+import {Customer} from '../shared/models/customer.model';
+import {CustomerService} from '../shared/services/customer.service';
 
 @Component({
   selector: 'app-home',
@@ -8,6 +11,16 @@ import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
+  public customer: Customer;
+  public customers$: Observable<Customer[]>;
+
+  constructor(private breakpointObserver: BreakpointObserver,
+              private customerService: CustomerService
+  ) {
+    this.customers$ = customerService.getCustomers();
+    console.log();
+  }
+
   /** Based on the screen size, switch from standard to one column per row */
   cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(({ matches }) => {
@@ -29,5 +42,4 @@ export class HomeComponent {
     })
   );
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
 }
