@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import {Observable} from 'rxjs';
@@ -10,16 +10,13 @@ import {CustomerService} from '../shared/services/customer.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit{
   public customer: Customer;
   public customers$: Observable<Customer[]>;
 
   constructor(private breakpointObserver: BreakpointObserver,
               private customerService: CustomerService
-  ) {
-    this.customers$ = customerService.getCustomers();
-    console.log();
-  }
+  ) {}
 
   /** Based on the screen size, switch from standard to one column per row */
   cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
@@ -41,5 +38,11 @@ export class HomeComponent {
       ];
     })
   );
+
+  ngOnInit(): void {
+    this.customers$ = this.customerService.getCustomers();
+    this.customers$.subscribe(response => console.log(response));
+    // this.customer = this.customers$.subscribe(response => console.log(response));
+  }
 
 }

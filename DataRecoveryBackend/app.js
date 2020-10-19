@@ -4,7 +4,6 @@ const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 dotenv.config({ path: './config/app.env'});
 
-const { mongoose } = require('./db.js')
 const customerController = require('./controllers/customerController');
 const productController = require('./controllers/productController');
 const orderController = require('./controllers/orderController');
@@ -18,6 +17,11 @@ app.use( bodyParser.json());
 app.use( (req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+  if (req.method === 'OPTIONS') {
+    res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET')
+    return res.status(200).json({});
+  }
+  next();
 });
 
 
