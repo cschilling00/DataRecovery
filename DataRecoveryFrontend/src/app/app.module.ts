@@ -17,30 +17,40 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { HttpClientModule } from '@angular/common/http';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatSelectModule} from "@angular/material/select";
+import { AdminComponent } from './admin/admin.component';
+import {ReactiveFormsModule} from "@angular/forms";
+import {NgxWigModule} from "ngx-wig";
 
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
-    HomeComponent
+    HomeComponent,
+    AdminComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        MatButtonModule,
-        LayoutModule,
-        MatToolbarModule,
-        MatSidenavModule,
-        MatIconModule,
-        MatListModule,
-        FontAwesomeModule,
-        MatGridListModule,
-        MatCardModule,
-        MatMenuModule,
-        HttpClientModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
+    FontAwesomeModule,
+    MatGridListModule,
+    MatCardModule,
+    MatMenuModule,
+    HttpClientModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    ReactiveFormsModule,
+    NgxWigModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

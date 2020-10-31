@@ -3,7 +3,8 @@ const bodyParser = require('body-parser');
 
 const dotenv = require('dotenv');
 dotenv.config({ path: './config/app.env'});
-
+// NICHT ENTFERNEN
+const { mongoose } = require('./db.js')
 const customerController = require('./controllers/customerController');
 const productController = require('./controllers/productController');
 const orderController = require('./controllers/orderController');

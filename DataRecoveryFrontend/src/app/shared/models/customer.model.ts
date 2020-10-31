@@ -6,5 +6,4 @@ export class Customer {
   email: string;
   city: string;
   houseNumber: number;
-  defectiveDevice: string[];
 }

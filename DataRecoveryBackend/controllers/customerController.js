@@ -45,8 +45,7 @@ router.post('/', (req, res) => {
         email: req.body.email,
         city: req.body.city,
         street: req.body.street,
-        houseNumber: req.body.houseNumber,
-        defectiveDevice: req.body.defectiveDevice
+        houseNumber: req.body.houseNumber
     });
 
     customerService.saveNewCustomer(customer, (err, result) => {
