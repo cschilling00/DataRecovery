@@ -1,0 +1,33 @@
+<nav class="navbar navbar-light navbar-expand-md bg-secondary p-0">
+
+  <a class="navbar-brand bg-primary p-3" routerLink="home">
+      TOBIAS JUNGBAUER <br>
+      DATENRETTUNGSDIENST <br>
+      AmmerseeDatenrettung.de
+  </a>
+
+  <button class="navbar-toggler mx-3" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">
+    <i class="fas fa-bars"></i>
+  </button>
+
+  <div ngbNav [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse">
+    <ul class="navbar-nav">
+      <li ngbNavItem  [ngClass]="currentRoute == '/home' ? 'active-page' : 'not-active'" >
+        <a ngbNavLink routerLink="home" (click)="isMenuCollapsed = true">
+          <div class="nav-link-text">Home</div>
+        </a>
+      </li>
+      <li ngbNavItem  [ngClass]="currentRoute == '/faq' ? 'active-page' : 'not-active'" >
+        <a ngbNavLink routerLink="faq" (click)="isMenuCollapsed = true">
+          <div class="nav-link-text">FAQ</div>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<router-outlet></router-outlet>
+
+<footer>
+
+</footer>
