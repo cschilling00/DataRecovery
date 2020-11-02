@@ -1,12 +1,8 @@
-.active-page {
-  border-bottom-style: solid;
-  color: aqua !important;
-}
+
 .active-page > a{
-  color: aqua !important;
+  color: white !important;
 }
-.not-active {
-  border-bottom-style: hidden;
-  color: white;
+.not-active > a{
+  color: whitesmoke;
   font-weight: lighter;
 }

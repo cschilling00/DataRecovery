@@ -1,5 +1,13 @@
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+  margin: 0;
+  font-family: arial, Roboto, "Helvetica Neue", sans-serif;
+  background-image: url("assets/escheresque.png");
+  background-blend-mode: hard-light;
+  background-color: #41414145 !important;
+  background-size: 2.4rem;
+
+}
 
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
