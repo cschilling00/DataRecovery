@@ -1,8 +1,13 @@
 
 .active-page > a{
   color: white !important;
+  font-size: 1.3rem;
 }
 .not-active > a{
-  color: whitesmoke;
-  font-weight: lighter;
+  color: white !important;
+  font-size: 1.3rem;
+}
+
+.navbar-collapse{
+  justify-content: flex-end;
 }

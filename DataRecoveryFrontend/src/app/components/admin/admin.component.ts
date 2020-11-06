@@ -13,11 +13,6 @@ export class AdminComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.EditContent = new FormGroup({
-      id: new FormControl(''),
-      title: new FormControl(''),
-      text: new FormControl('')
-    });
   }
 
 }

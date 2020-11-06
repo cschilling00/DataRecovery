@@ -16,6 +16,7 @@ exports.findAllOrders = (callback) => {
 
 exports.findOrderById = (id, callback) => {
     console.log(id);
+    Order.findOne()
     Order.findById(id)
         .populate(['customer','product'])
         .exec()

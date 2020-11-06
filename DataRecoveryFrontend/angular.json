@@ -28,7 +28,6 @@
               "src/assets"
             ],
             "styles": [
-              "src/custom-theme.scss",
               "src/styles.scss",
               "./node_modules/@fortawesome/fontawesome-free/css/all.css"
             ],
@@ -95,7 +94,6 @@
             ],
             "styles": [
               "src/styles.scss",
-              "src/custom-theme.scss",
               "./node_modules/@fortawesome/fontawesome-free/css/fontawesome.css"
 
             ],
