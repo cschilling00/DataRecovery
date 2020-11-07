@@ -4,6 +4,8 @@ export class Customer {
   lastName: string;
   tel: number;
   email: string;
+  postalCode: number;
   city: string;
+  street: string;
   houseNumber: number;
 }

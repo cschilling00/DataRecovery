@@ -5,6 +5,7 @@ const Customer = mongoose.model('Customer', {
     lastName: { type: String},
     tel: { type: Number},
     email: { type: String},
+    postalCode: { type: Number},
     city: { type: String},
     street: { type: String},
     houseNumber: { type: String}

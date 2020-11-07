@@ -1,1 +1,23 @@
-<p>order works!</p>
+<div class="container-fluid d-flex h-75 align-items-center">
+  <ng-container *ngIf="!this.loggedIn">
+    <div class="col-2"></div>
+      <div class="col-4 text-right">
+        <h2 class="m-0">Tracking ID: </h2>
+        <h2 class="m-0 mt-3">Postleitzahl: </h2>
+      </div>
+    <div class="col-2">
+      <input type="text" class="form-control" [formControl]="trackingId">
+      <input type="text" class="form-control mt-3" [formControl]="postalCode">
+    </div>
+    <div class="col-4">
+      <button type="button" class="btn btn-primary" (click)="submitPostalCode()">Bestätigen</button>
+    </div>
+  </ng-container>
+</div>
+
+
+<ng-container *ngIf="this.loggedIn">
+  <p>eingeloggt</p>
+</ng-container>
+
+{{this.loggedIn}}

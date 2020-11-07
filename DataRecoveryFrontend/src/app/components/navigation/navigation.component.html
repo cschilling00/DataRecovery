@@ -17,6 +17,11 @@
           <div class="nav-link-text">Home</div>
         </a>
       </li>
+      <li ngbNavItem  [ngClass]="currentRoute == '/order' ? 'active-page' : 'not-active'" >
+        <a ngbNavLink routerLink="order" (click)="isMenuCollapsed = true">
+          <div class="nav-link-text">Order</div>
+        </a>
+      </li>
       <li ngbNavItem  [ngClass]="currentRoute == '/faq' ? 'active-page' : 'not-active'" >
         <a ngbNavLink routerLink="faq" (click)="isMenuCollapsed = true">
           <div class="nav-link-text">FAQ</div>

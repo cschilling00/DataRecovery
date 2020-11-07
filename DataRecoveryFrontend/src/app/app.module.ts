@@ -15,6 +15,7 @@ import { StaticComponent } from './components/static/static.component';
 import { AdminComponent } from './components/admin/admin.component';
 import {NavigationComponent} from './components/navigation/navigation.component';
 import { OrderComponent } from './components/order/order.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { OrderComponent } from './components/order/order.component';
     FontAwesomeModule,
     HttpClientModule,
     NgbModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
