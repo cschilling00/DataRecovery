@@ -92,24 +92,24 @@ router.patch('/:orderId', (req, res) => {
             });
         }
     });
-
-    router.post('/', (req, res) => {
-        var compOrder = new Order({
-            postalCode: req.body.customer.postalCode,
-            trackingId: req.body.trackingId
-        });
-        orderService.validateCustomer(compOrder, (err, result) => {
-            if (err) {
-                res.status(500).json({
-                    error: err
-                });
-                res.end();
-            } else {
-                res.status(200).json(result);
-            }
-        });
+});
+router.post('/tracking', (req, res) => {
+    console.log('REQUEST: '+ req.body)
+    var compOrder = new Order({
+        postalCode: req.body.customer.postalCode,
+        trackingId: req.body.trackingId
+    });
+    console.log(compOrder);
+    orderService.validateCustomer(compOrder, (err, result) => {
+        if (err) {
+            res.status(500).json({
+                error: err
+            });
+            res.end();
+        } else {
+            res.status(200).json(result);
+        }
     });
 });
-
 module.exports = router;
 

@@ -73,4 +73,9 @@ export class BackendService {
   deleteOrder(id: Order): Observable<any> {
     return this.http.delete(`${this.backendUrl + 'orders/'}${id}`);
   }
+  validateTrackingId(trackingId: string, postalCode: number): Observable<any>{
+    return this.http.post(`${this.backendUrl + 'tracking/'}${trackingId}`,{
+      'postalCode': postalCode
+    })
+  }
 }

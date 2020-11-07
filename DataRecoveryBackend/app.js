@@ -7,6 +7,7 @@ dotenv.config({ path: './config/app.env'});
 const { mongoose } = require('./db.js')
 const customerController = require('./controllers/customerController');
 const productController = require('./controllers/productController');
+const trackingController = require('./controllers/trackingController');
 const orderController = require('./controllers/orderController');
 
 const app = express();
@@ -29,6 +30,7 @@ app.use( (req, res, next) => {
 app.use('/customers', customerController);
 app.use('/products', productController);
 app.use('/orders', orderController);
+app.use('/tracking', trackingController);
 
 app.use(function(req, res) {
   res.status(404);

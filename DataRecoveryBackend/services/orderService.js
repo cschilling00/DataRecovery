@@ -58,8 +58,8 @@ exports.deleteOrderById = (id, callback) => {
 
 exports.updateOrderById = (id, updateOps, callback) => {
     console.log(id);
-    Order.updateOne({ _id: id}, { $set: updateOps })
-        .populate(['customer','product'])
+    Order.updateOne({_id: id}, {$set: updateOps})
+        .populate(['customer', 'product'])
         .exec()
         .then(result => {
             console.log(result);
@@ -69,47 +69,7 @@ exports.updateOrderById = (id, updateOps, callback) => {
             console.log('Error in updating order : ' + JSON.stringify(err, undefined, 2));
             callback(err, null);
         });
-
-exports.validateCustomer = (order, callback) => {
-    console.log(order);
-    var valid = false;
-    Order.find()
-        .populate(['customer','product'])
-        .exec()
-        .then(docs => {
-            console.log(docs);
-            if (order.trackingId == docs.trackingId && order.postalCode == docs.customer.postalCode){
-                valid = true;
-                callback(null, docs);
-            }
-        })
-        .catch(err => {
-            console.log(('Error in retrieving orders : ' + JSON.stringify(err, undefined, 2)));
-            callback(err, null);
-        })
-
-    Order.findOne({trackingId: order.trackingId}, function (err, result) {
-        if (err) {
-            res.send(err);
-        } else {
-            res.send(result);
-        }
-
-    })
-
-
-
-    order.save()
-         .then(result => {
-             console.log(result);
-             callback(null, result);
-         })
-         .catch(err => {
-             console.log(('Error in saving orders : ' + JSON.stringify(err, undefined, 2)));
-             callback(err, null);
-         })
-    };
-};
+}
 
 
 
