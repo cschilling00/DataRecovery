@@ -15,6 +15,8 @@ import { StaticComponent } from './components/static/static.component';
 import { AdminComponent } from './components/admin/admin.component';
 import {NavigationComponent} from './components/navigation/navigation.component';
 import { OrderComponent } from './components/order/order.component';
+import {NgxWigModule} from 'ngx-wig';
+import {ReactiveFormsModule} from '@angular/forms';
 import {ReactiveFormsModule} from '@angular/forms';
 
 
@@ -37,7 +39,8 @@ import {ReactiveFormsModule} from '@angular/forms';
     FontAwesomeModule,
     HttpClientModule,
     NgbModule,
-    ReactiveFormsModule,
+    NgxWigModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

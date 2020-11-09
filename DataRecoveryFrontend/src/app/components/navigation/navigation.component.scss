@@ -1,12 +1,13 @@
-.active-page {
-  border-bottom-style: solid;
-  color: aqua !important;
-}
+
 .active-page > a{
-  color: aqua !important;
+  color: white !important;
+  font-size: 1.3rem;
 }
-.not-active {
-  border-bottom-style: hidden;
-  color: white;
-  font-weight: lighter;
+.not-active > a{
+  color: white !important;
+  font-size: 1.3rem;
+}
+
+.navbar-collapse{
+  justify-content: flex-end;
 }
