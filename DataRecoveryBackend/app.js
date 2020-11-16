@@ -8,6 +8,7 @@ const { mongoose } = require('./db.js')
 const customerController = require('./controllers/customerController');
 const productController = require('./controllers/productController');
 const orderController = require('./controllers/orderController');
+const invoiceController = require('./controllers/invoiceController');
 
 const app = express();
 
@@ -29,6 +30,7 @@ app.use( (req, res, next) => {
 app.use('/customers', customerController);
 app.use('/products', productController);
 app.use('/orders', orderController);
+app.use('/invoice', invoiceController)
 
 app.use(function(req, res) {
   res.status(404);
