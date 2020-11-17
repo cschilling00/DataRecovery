@@ -3,8 +3,7 @@ const bodyParser = require('body-parser');
 
 const dotenv = require('dotenv');
 dotenv.config({ path: './config/app.env'});
-// NICHT ENTFERNEN
-const { mongoose } = require('./db.js')
+
 const customerController = require('./controllers/customerController');
 const productController = require('./controllers/productController');
 const orderController = require('./controllers/orderController');
@@ -12,8 +11,14 @@ const invoiceController = require('./controllers/invoiceController');
 
 const app = express();
 
+let connect = require('camo').connect;
+let database;
 
+var uri = 'nedb://./data'
 
+connect(uri).then(function (db){
+  database = db;
+});
 app.use( bodyParser.json());
 
 app.use( (req, res, next) => {

@@ -1,8 +1,6 @@
-const { Customer } = require('../models/customerModel');
-
-exports.findAllCustomers = (callback) => {
+const Customer = require('../models/customerModel');
+exports.findAllCustomers = (callback)  => {
     Customer.find()
-        .exec()
         .then(docs => {
             console.log(docs);
             callback(null, docs);
@@ -15,8 +13,7 @@ exports.findAllCustomers = (callback) => {
 
 exports.findCustomerById = (id, callback) => {
     console.log(id);
-    Customer.findById(id)
-        .exec()
+    Customer.findOne({ _id: id})
         .then(doc => {
             console.log(doc);
             callback(null, doc);
@@ -43,7 +40,6 @@ exports.saveNewCustomer = (customer, callback) => {
 exports.deleteCustomerById = (id, callback) => {
     console.log(id);
     Customer.deleteOne({ _id: id})
-        .exec()
         .then(result => {
             console.log(result);
             callback(null, result);
@@ -54,18 +50,19 @@ exports.deleteCustomerById = (id, callback) => {
         });
 };
 
-exports.updateCustomerById = (id, updateOps, callback) => {
-    console.log(id);
-    Customer.updateOne({ _id: id}, { $set: updateOps })
-        .exec()
-        .then(result => {
+exports.updateCustomerById = (id, updateCustomer, callback) => {
+    console.log('id in service'+id);
+    console.log('object in service')
+    Customer.findOneAndUpdate({_id:id}, {updateCustomer}).
+    then(result => {
             console.log(result);
             callback(null, result);
         })
         .catch(err => {
             console.log('Error in updating customer : ' + JSON.stringify(err, undefined, 2));
             callback(err, null);
-        });
+        }
+    );
 };
 
 

@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
-
-const { Customer } = require('../models/customerModel');
+const Customer = require('../models/customerModel');
 const customerService = require('../services/customerService');
 
 // localhost:3000/customers/
@@ -38,7 +37,7 @@ router.get('/:customerId', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    var customer = new Customer({
+    let customer = Customer.create({
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         tel: req.body.tel,
@@ -87,13 +86,13 @@ router.patch('/:customerId', (req, res) => {
     const id = req.params.customerId;
     console.log(id);
     const updateOps = {};
-    for (const ops of req.body) {
-        updateOps[ops.propertyName] = ops.value;
+    for(const [key, value] of Object.entries(req.body)){
+        updateOps[key] = value;
     }
     customerService.updateCustomerById(id, updateOps, (err, result) => {
         if(result){
             res.status(200).json(result);
-        } else {
+        } else if(!err){
             res.status(404).json({message: 'Customer with id '+ id + ' not found.'});
         }
         console.log(result);
