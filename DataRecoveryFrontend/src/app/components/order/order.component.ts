@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl} from '@angular/forms';
-import {BackendService} from '../../shared/services/backend.service';
 import {Order} from '../../shared/models/order';
 import {CustomNumberValidator} from '../../shared/validators/CustomNumberValidator';
+import {TrackingService} from '../../shared/services/tracking.service';
 
 @Component({
   selector: 'app-order',
@@ -15,7 +15,7 @@ export class OrderComponent implements OnInit {
   postalCode = new FormControl('', [CustomNumberValidator.numeric]);
   trackingId = new FormControl('');
 
-  constructor(private backendService: BackendService) { }
+  constructor(private trackingService: TrackingService) { }
 
   ngOnInit(): void {
   }
@@ -23,7 +23,7 @@ export class OrderComponent implements OnInit {
   submitPostalCode() {
     console.log(this.postalCode.value); //88433
     console.log(this.trackingId.value);
-    this.backendService.validateTrackingId(this.trackingId.value,parseInt(this.postalCode.value)).subscribe( order => {
+    this.trackingService.validateTrackingId(this.trackingId.value,parseInt(this.postalCode.value)).subscribe( order => {
       this.order = order[0];
       if(this.order.trackingId == this.trackingId.value && parseInt(this.postalCode.value) == this.order.customer.postalCode ){
         this.loggedIn = true

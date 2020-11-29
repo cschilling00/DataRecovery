@@ -1,0 +1,19 @@
+<div class="container-fluid row h-75 align-items-center">
+    <div class="container d-flex justify-content-center">
+
+        <div class="col-8">
+          <h2 class="m-2 text-center">Typische Fragen: </h2><br>
+          <ng-container *ngFor="let faq of faqs">
+            <ngb-accordion>
+              <ngb-panel title="{{faq.question}}">
+                <ng-template ngbPanelContent>
+                  {{faq.answer}}
+                </ng-template>
+              </ngb-panel>
+            </ngb-accordion>
+          </ng-container>
+        </div>
+
+    </div>
+</div>
+
