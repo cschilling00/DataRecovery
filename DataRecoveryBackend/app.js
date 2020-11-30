@@ -3,8 +3,10 @@ const bodyParser = require('body-parser');
 
 const dotenv = require('dotenv');
 dotenv.config({ path: './config/app.env'});
+
 // NICHT ENTFERNEN
 const db = require('./db');
+
 const customerController = require('./controllers/customerController');
 const productController = require('./controllers/productController');
 const trackingController = require('./controllers/trackingController');

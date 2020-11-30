@@ -1,110 +1,35 @@
 const express = require('express');
 const router = express.Router();
-
-const { Customer } = require('../models/customerModel');
-const customerService = require('../services/customerService');
+const db = require('../db');
 
 // localhost:3000/customers/
-router.get('/', (req, res) => {
-    customerService.findAllCustomers((err, data) => {
-        if (err) {
-            res.status(500).json({
-                error: err
-            });
-            res.end();
-        } else {
-            res.status(200).json(data);
-        }
-    });
+router.get('/', function(req, res) {
+    db.customers.findAll().then(customers => res.json(customers));
 });
 
-router.get('/:customerId', (req, res) => {
+router.get('/:customerId', function(req, res) {
     const id = req.params.customerId;
     console.log(id);
-
-    customerService.findCustomerById(id,(err, data) => {
-    if(data){
-        res.status(200).json(data);
-    } else {
-        res.status(404).json({message: 'Customer with id '+ id + ' not found.'});
-    }
-    console.log(data);
-    if (err) {
-        res.status(500).json({
-            error: err
-        });
-    }
-    });
+    db.customers.findByPk(id).then(customers => res.json(customers));
+    // db.customers.findOne({'customerId':id}).then(customer => res.json(customer));
 });
 
-router.post('/', (req, res) => {
-    var customer = new Customer({
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        tel: req.body.tel,
-        email: req.body.email,
-        postalCode: req.body.postalCode,
-        city: req.body.city,
-        street: req.body.street,
-        houseNumber: req.body.houseNumber
-    });
-
-    customerService.saveNewCustomer(customer, (err, result) => {
-        if (err) {
-            res.status(500).json({
-                error: err
-            });
-            res.end();
-        } else {
-            res.status(200).json(result);
-        }
-    });
+router.post('/', function(req, res) {
+    db.customers.create(req.body).then(customer => res.json(customer));
 });
 
-router.delete('/:customerId', (req, res) => {
+router.patch('/:customerId', function(req, res) {
     const id = req.params.customerId;
-    console.log(id);
-
-    customerService.deleteCustomerById(id, (err, data) => {
-        if(data){
-            res.status(200).json(data);
-        }
-        console.log(data);
-        if (err) {
-            res.status(500).json({
-                error: err
-            });
-        }
-    })
+    db.customers.findByPk(id)
+        .then(customer => customer.update(req.body)
+            .then(customer => res.json(customer)));
 });
 
-// Postman Requestbody example:
-// [
-//     {"propertyName": "firstName", "value": "Bobbly"},
-//     {"propertyName": "lastName", "value": "Bauller"}
-// ]
-
-router.patch('/:customerId', (req, res) => {
-    const id = req.params.customerId;
-    console.log(id);
-    const updateOps = {};
-    for (const ops of req.body) {
-        updateOps[ops.propertyName] = ops.value;
-    }
-    customerService.updateCustomerById(id, updateOps, (err, result) => {
-        if(result){
-            res.status(200).json(result);
-        } else {
-            res.status(404).json({message: 'Customer with id '+ id + ' not found.'});
-        }
-        console.log(result);
-        if (err) {
-            res.status(500).json({
-                error: err
-            });
-        }
-    });
-});
+router.delete('/:customerId', function (req, res){
+    console.log('customerId');
+    db.customers.findByPk(req.params.customerId)
+        .then(customer => customer.destroy())
+        .then(customer => res.sendStatus(200))
+})
 
 module.exports = router;
-
