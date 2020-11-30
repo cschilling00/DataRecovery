@@ -1,9 +1,15 @@
-const mongoose = require('mongoose');
+module.exports = (db) => {
+    const Product = db.sequelize.define("product", {
+        productName: {
+            type: db.Sequelize.STRING
+        },
+        price: {
+            type: db.Sequelize.INTEGER
+        },
+        category: {
+            type: db.Sequelize.STRING
+        }
+    });
 
-const Product = mongoose.model('Product', {
-    productName: {type: String},
-    price: {type: Number},
-    category: {type: String}
-});
-
-module.exports = { Product };
+    return Product;
+};

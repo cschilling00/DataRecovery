@@ -1,14 +1,22 @@
-const mongoose = require('mongoose'), Schema = mongoose.Schema;
 const randtoken = require('rand-token');
 
-const Order = mongoose.model('Order', {
-    customer: {type: Schema.Types.ObjectId, ref: 'Customer'},
-    product: {type: Schema.Types.ObjectId, ref: 'Product'},
-    trackingId: {type: String,default: function () {
-            return randtoken.generate(64)
-        }},
-    orderDate: {type: Date, default: Date.now()}
-});
+module.exports = (db) => {
+    const Order = db.sequelize.define("order", {
+        trackingId: {
+            type: db.Sequelize.STRING,
+            defaultValue: function () {
+                return randtoken.generate(8)
+            }
+        },
+            orderDate: {
+            type: db.Sequelize.DATE,
+            defaultValue: db.Sequelize.NOW
+        }
+    });
 
 
-module.exports = { Order };
+    // Order.hasOne(db.customers)
+    // Order.hasOne(db.products)
+
+    return Order;
+};

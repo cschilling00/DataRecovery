@@ -1,115 +1,57 @@
 const express = require('express');
 const router = express.Router();
-
-const { Order } = require('../models/orderModel');
-const orderService = require('../services/orderService');
+const db = require('../db');
 
 // localhost:3000/orders/
-router.get('/', (req, res) => {
-    orderService.findAllOrders((err, data) => {
-        if (err) {
-            res.status(500).json({
-                error: err
-            });
-            res.end();
-        } else {
-            res.status(200).json(data);
-        }
-    });
+router.get('/', function(req, res) {
+    db.orders.findAll().then(orders => res.json(orders));
 });
 
-router.get('/:orderId', (req, res) => {
+router.get('/:orderId', function(req, res) {
     const id = req.params.orderId;
     console.log(id);
-
-    orderService.findOrderById(id,(err, data) => {
-        if(data){
-            res.status(200).json(data);
-        } else {
-            res.status(404).json({message: 'Order with id '+ id + ' not found.'});
-        }
-        console.log(data);
-        if (err) {
-            res.status(500).json({
-                error: err
-            });
-        }
-    });
+    db.orders.findByPk(id).then(orders => res.json(orders));
+    // db.customers.findOne({'customerId':id}).then(customer => res.json(customer));
 });
 
-router.post('/', (req, res) => {
-    var order = new Order({
-        customer: req.body.customer,
-        product: req.body.product,
-    });
-
-    orderService.saveNewOrder(order, (err, result) => {
-        if (err) {
-            res.status(500).json({
-                error: err
-            });
-            res.end();
-        } else {
-            res.status(200).json(result);
-        }
-    });
+router.post('/', function(req, res) {
+    db.orders.create(req.body).then(order => res.json(order));
 });
 
-router.delete('/:orderId', (req, res) => {
+router.patch('/:orderId', function(req, res) {
     const id = req.params.orderId;
-    console.log(id);
-
-    orderService.deleteOrderById(id, (err, data) => {
-        if(data){
-            res.status(200).json(data);
-        }
-        console.log(data);
-        if (err) {
-            res.status(500).json({
-                error: err
-            });
-        }
-    })
+    db.orders.findByPk(id)
+        .then(order => order.update(req.body)
+            .then(order => res.json(order)));
 });
 
-router.patch('/:orderId', (req, res) => {
-    const id = req.params.orderId;
-    console.log(id);
-    const updateOps = {};
-    for (const ops of req.body) {
-        updateOps[ops.propertyName] = ops.value;
-    }
-    orderService.updateOrderById(id, updateOps, (err, result) => {
-        if(result){
-            res.status(200).json(result);
-        } else {
-            res.status(404).json({message: 'Order with id '+ id + ' not found.'});
-        }
-        console.log(result);
-        if (err) {
-            res.status(500).json({
-                error: err
-            });
-        }
-    });
+router.delete('/:orderId', function (req, res){
+    console.log(req.params.orderId);
+    db.orders.findByPk(req.params.orderId)
+        .then(order => order.destroy())
+        .then(order => res.sendStatus(200))
 });
-router.post('/tracking', (req, res) => {
-    console.log('REQUEST: '+ req.body)
-    var compOrder = new Order({
-        postalCode: req.body.customer.postalCode,
-        trackingId: req.body.trackingId
-    });
-    console.log(compOrder);
-    orderService.validateCustomer(compOrder, (err, result) => {
-        if (err) {
-            res.status(500).json({
-                error: err
-            });
-            res.end();
-        } else {
-            res.status(200).json(result);
-        }
-    });
-});
+
 module.exports = router;
+
+
+// router.post('/tracking', (req, res) => {
+//     console.log('REQUEST: '+ req.body)
+//     var compOrder = new Order({
+//         postalCode: req.body.customer.postalCode,
+//         trackingId: req.body.trackingId
+//     });
+//     console.log(compOrder);
+//     orderService.validateCustomer(compOrder, (err, result) => {
+//         if (err) {
+//             res.status(500).json({
+//                 error: err
+//             });
+//             res.end();
+//         } else {
+//             res.status(200).json(result);
+//         }
+//     });
+// });
+
 

@@ -15,5 +15,11 @@ router.post('/:trackingId', (req, res) => {
         }
     });
 });
+
+router.post('/', function(req, res) {
+    db.faqs.create(req.body).then(faq => res.json(faq));
+});
+
+
 module.exports = router;
 

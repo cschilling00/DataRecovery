@@ -30,6 +30,6 @@ router.delete('/:customerId', function (req, res){
     db.customers.findByPk(req.params.customerId)
         .then(customer => customer.destroy())
         .then(customer => res.sendStatus(200))
-})
+});
 
 module.exports = router;

@@ -1,8 +1,12 @@
-const mongoose = require('mongoose');
+module.exports = (db) => {
+    const Faq = db.sequelize.define("faq", {
+        question: {
+            type: db.Sequelize.STRING
+        },
+        answer: {
+            type: db.Sequelize.STRING
+        }
+    });
 
-const Faq = mongoose.model('Faq', {
-    question: {type: String},
-    answer: {type: String}
-});
-
-module.exports = { Faq };
+    return Faq;
+};

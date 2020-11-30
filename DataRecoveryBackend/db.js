@@ -1,5 +1,4 @@
 const Sequelize = require('sequelize');
-const Customer = require('./models/customerModel')
 const sequelize = new Sequelize({
     dialect: 'sqlite',
     storage: './database.sqlite'
@@ -9,6 +8,10 @@ const db = {};
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 db.customers = require('./models/customerModel')(db);
+db.faqs = require('./models/faqModel')(db);
+db.orders = require('./models/orderModel')(db);
+db.products = require('./models/productModel')(db);
+
 sequelize.authenticate()
     .then(() => {
         console.log('Connection has been established successfully.');

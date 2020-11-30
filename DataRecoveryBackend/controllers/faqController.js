@@ -1,100 +1,36 @@
 const express = require('express');
 const router = express.Router();
+const db = require('../db');
 
-const { Faq } = require('../models/faqModel');
-const faqService = require('../services/faqService');
 
 // localhost:3000/faq/
-router.get('/', (req, res) => {
-    faqService.findAllFaqs((err, data) => {
-        if (err) {
-            res.status(500).json({
-                error: err
-            });
-            res.end();
-        } else {
-            res.status(200).json(data);
-        }
-    });
+router.get('/', function(req, res) {
+    db.faqs.findAll().then(faqs => res.json(faqs));
 });
 
-router.get('/:faqId', (req, res) => {
+router.get('/:faqId', function(req, res) {
     const id = req.params.faqId;
     console.log(id);
-
-    faqService.findFaqById(id,(err, data) => {
-        if(data){
-            res.status(200).json(data);
-        } else {
-            res.status(404).json({message: 'Product with id '+ id + ' not found.'});
-        }
-        console.log(data);
-        if (err) {
-            res.status(500).json({
-                error: err
-            });
-        }
-    });
+    db.faqs.findByPk(id).then(faqs => res.json(faqs));
+    // db.customers.findOne({'customerId':id}).then(customer => res.json(customer));
 });
 
-router.post('/', (req, res) => {
-
-    var faq = new Faq({
-        question: req.body.question,
-        answer: req.body.answer
-    });
-
-    console.log(faq)
-
-    faqService.saveNewFaq(faq, (err, result) => {
-        if (err) {
-            res.status(500).json({
-                error: err
-            });
-            res.end();
-        } else {
-            res.status(200).json(result);
-        }
-    });
+router.post('/', function(req, res) {
+    db.faqs.create(req.body).then(faq => res.json(faq));
 });
 
-router.delete('/:faqId', (req, res) => {
+router.patch('/:faqId', function(req, res) {
     const id = req.params.faqId;
-    console.log(id);
-
-    faqService.deleteFaqById(id, (err, data) => {
-        if(data){
-            res.status(200).json(data);
-        }
-        console.log(data);
-        if (err) {
-            res.status(500).json({
-                error: err
-            });
-        }
-    })
+    db.faqs.findByPk(id)
+        .then(faq => faq.update(req.body)
+            .then(faq => res.json(faq)));
 });
 
-router.patch('/:faqId', (req, res) => {
-    const id = req.params.faqId;
-    console.log(id);
-    const updateOps = {};
-    for (const ops of req.body) {
-        updateOps[ops.propertyName] = ops.value;
-    }
-    faqService.updateFaqById(id, updateOps, (err, result) => {
-        if(result){
-            res.status(200).json(result);
-        } else {
-            res.status(404).json({message: 'Product with id '+ id + ' not found.'});
-        }
-        console.log(result);
-        if (err) {
-            res.status(500).json({
-                error: err
-            });
-        }
-    });
+router.delete('/:faqId', function (req, res){
+    console.log(req.params.faqId);
+    db.faqs.findByPk(req.params.faqId)
+        .then(faq => faq.destroy())
+        .then(faq => res.sendStatus(200))
 });
 
 module.exports = router;
