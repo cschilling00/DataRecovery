@@ -9,13 +9,13 @@ module.exports = (db) => {
             }
         },
             orderDate: {
-            type: db.Sequelize.DATE,
-            defaultValue: db.Sequelize.NOW
+                type: db.Sequelize.DATE,
+                defaultValue: db.Sequelize.NOW
         }
     });
 
 
-    // Order.hasOne(db.customers)
+    //Order.hasOne(db.customers)
     // Order.hasOne(db.products)
 
     return Order;

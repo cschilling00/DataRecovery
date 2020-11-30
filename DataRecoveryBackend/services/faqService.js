@@ -1,8 +1,8 @@
-const { Faq } = require('../models/faqModel');
+const { Faq } = require('../model/faqModel');
+const db = require('../db');
 
 exports.findAllFaqs = (callback) => {
-    Faq.find()
-        .exec()
+    db.faqs.findAll()
         .then(docs => {
             console.log(docs);
             callback(null, docs);
@@ -15,8 +15,7 @@ exports.findAllFaqs = (callback) => {
 
 exports.findFaqById = (id, callback) => {
     console.log(id);
-    Faq.findById(id)
-        .exec()
+    db.faqs.findByPk(id)
         .then(doc => {
             console.log(doc);
             callback(null, doc);
@@ -28,8 +27,7 @@ exports.findFaqById = (id, callback) => {
 };
 
 exports.saveNewFaq = (faq, callback) => {
-    console.log(faq);
-    faq.save()
+    db.faqs.create(faq)
         .then(result => {
             console.log(result);
             callback(null, result);
@@ -41,9 +39,8 @@ exports.saveNewFaq = (faq, callback) => {
 };
 
 exports.deleteFaqById = (id, callback) => {
-    console.log(id);
-    Faq.deleteOne({ _id: id})
-        .exec()
+    db.faqs.findByPk(id)
+        .then(faq => faq.destroy())
         .then(result => {
             console.log(result);
             callback(null, result);
@@ -54,10 +51,9 @@ exports.deleteFaqById = (id, callback) => {
         });
 };
 
-exports.updateFaqById = (id, updateOps, callback) => {
-    console.log(id);
-    Faq.updateOne({ _id: id}, { $set: updateOps })
-        .exec()
+exports.updateFaqById = (id, data, callback) => {
+    db.faqs.findByPk(id)
+        .then(faq => faq.update(data))
         .then(result => {
             console.log(result);
             callback(null, result);

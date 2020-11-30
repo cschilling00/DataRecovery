@@ -1,31 +1,77 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../db');
+const orderService = require('../services/orderService')
 
 // localhost:3000/orders/
 router.get('/', function(req, res) {
-    db.orders.findAll().then(orders => res.json(orders));
+    orderService.findAllOrders((err, data) => {
+        if (err) {
+            res.status(500).json({
+                error: err
+            });
+            res.end();
+        } else {
+            res.status(200).json(data);
+        }
+    })
 });
 
 router.get('/:orderId', function(req, res) {
     const id = req.params.orderId;
-    console.log(id);
-    db.orders.findByPk(id).then(orders => res.json(orders));
-    // db.customers.findOne({'customerId':id}).then(customer => res.json(customer));
+    orderService.findOrderById(id,(err,data) => {
+        if (err) {
+            res.status(500).json({
+                error: err
+            });
+            res.end();
+        } else {
+            res.status(200).json(data);
+        }
+    })
+
+
 });
 
 router.post('/', function(req, res) {
-    db.orders.create(req.body).then(order => res.json(order));
+    orderService.saveNewOrder(req.body, (err, data) => {
+        if (err) {
+            res.status(500).json({
+                error: err
+            });
+            res.end();
+        } else {
+            res.status(200).json(data);
+        }
+    })
 });
 
 router.patch('/:orderId', function(req, res) {
     const id = req.params.orderId;
-    db.orders.findByPk(id)
-        .then(order => order.update(req.body)
-            .then(order => res.json(order)));
+
+    orderService.updateOrderById(id,req.body, (err,data) => {
+        if (err) {
+            res.status(500).json({
+                error: err
+            });
+            res.end();
+        } else {
+            res.status(200).json(data);
+        }
+    })
 });
 
 router.delete('/:orderId', function (req, res){
+    orderService.deleteOrderById(req.params.customerId,(err,data) => {
+        if (err) {
+            res.status(500).json({
+                error: err
+            });
+            res.end();
+        } else {
+            res.status(200).json(data);
+        }
+    })
     console.log(req.params.orderId);
     db.orders.findByPk(req.params.orderId)
         .then(order => order.destroy())

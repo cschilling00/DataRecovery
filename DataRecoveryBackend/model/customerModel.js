@@ -25,6 +25,5 @@ module.exports = (db) => {
             type: db.Sequelize.STRING
         }
     });
-
     return Customer;
 };

@@ -1,9 +1,7 @@
-const { Order } = require('../models/orderModel');
+const db = require('../db');
 
 exports.findAllOrders = (callback) => {
-    Order.find()
-        .populate(['customer','product'])
-        .exec()
+    db.orders.findAll({include: db.customers})
         .then(docs => {
             console.log(docs);
             callback(null, docs);
@@ -15,11 +13,7 @@ exports.findAllOrders = (callback) => {
 };
 
 exports.findOrderById = (id, callback) => {
-    console.log(id);
-    Order.findOne()
-    Order.findById(id)
-        .populate(['customer','product'])
-        .exec()
+    db.orders.findByPk(id)
         .then(doc => {
             console.log(doc);
             callback(null, doc);
@@ -31,8 +25,7 @@ exports.findOrderById = (id, callback) => {
 };
 
 exports.saveNewOrder = (order, callback) => {
-    console.log(order);
-    order.save()
+    db.orders.create(order)
         .then(result => {
             console.log(result);
             callback(null, result);
@@ -44,8 +37,8 @@ exports.saveNewOrder = (order, callback) => {
 };
 
 exports.deleteOrderById = (id, callback) => {
-    console.log(id);
-    Order.deleteOne({ _id: id})
+    db.orders.findByPk(id)
+        .then(order => order.destroy())
         .exec()
         .then(result => {
             console.log(result);
@@ -57,11 +50,9 @@ exports.deleteOrderById = (id, callback) => {
         });
 };
 
-exports.updateOrderById = (id, updateOps, callback) => {
+exports.updateOrderById = (id, data, callback) => {
     console.log(id);
-    Order.updateOne({_id: id}, {$set: updateOps})
-        .populate(['customer', 'product'])
-        .exec()
+    db.orders.findByPk(id).then(order => order.update(data))
         .then(result => {
             console.log(result);
             callback(null, result);

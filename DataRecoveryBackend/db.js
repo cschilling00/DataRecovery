@@ -7,11 +7,13 @@ const sequelize = new Sequelize({
 const db = {};
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
-db.customers = require('./models/customerModel')(db);
-db.faqs = require('./models/faqModel')(db);
-db.orders = require('./models/orderModel')(db);
-db.products = require('./models/productModel')(db);
+db.customers = require('./model/customerModel')(db);
+db.faqs = require('./model/faqModel')(db);
+db.orders = require('./model/orderModel')(db);
+db.products = require('./model/productModel')(db);
 
+db.customers.hasMany(db.orders,{as: 'order', foreignKey: 'customerId'});
+db.orders.belongsTo(db.customers);
 sequelize.authenticate()
     .then(() => {
         console.log('Connection has been established successfully.');
@@ -26,12 +28,18 @@ sequelize.sync({ force: true })
         console.log(`Database & tables created!`);
 
         db.customers.bulkCreate([
-            {firstName: "Thomas",lastName: "Schuehly" }
-        ]).then(function() {
-            return db.customers.findAll();
-        }).then(function(notes) {
-            console.log(notes);
-        });
+            {firstName: "Thomas",lastName: "Schuehly" },
+            {firstName: "Cassandra",lastName: "Schilling" }
+
+        ])
+        db.products.bulkCreate([
+            {productName: "SSD",price: 50, category: "Flash"}
+
+        ])
+        db.faqs.bulkCreate([
+            {question: "Test",answer: "Success" }
+
+        ])
     });
 
 module.exports = db;

@@ -1,8 +1,8 @@
-const { Product } = require('../models/productModel');
+const { Product } = require('../model/customerModel');
+const db = require('../db');
 
 exports.findAllProducts = (callback) => {
-    Product.find()
-        .exec()
+    db.products.findAll()
         .then(docs => {
             console.log(docs);
             callback(null, docs);
@@ -15,21 +15,19 @@ exports.findAllProducts = (callback) => {
 
 exports.findProductById = (id, callback) => {
     console.log(id);
-    Product.findById(id)
-        .exec()
+    db.products.findByPk(id)
         .then(doc => {
             console.log(doc);
             callback(null, doc);
         })
         .catch(err => {
-            console.log(('Error in retrieving product : ' + JSON.stringify(err, undefined, 2)));
+            console.log(('Error in retrieving customer : ' + JSON.stringify(err, undefined, 2)));
             callback(err, null);
         })
 };
 
-exports.saveNewProduct = (product, callback) => {
-    console.log(product);
-    product.save()
+exports.saveNewProduct = (customer, callback) => {
+    db.products.create(customer)
         .then(result => {
             console.log(result);
             callback(null, result);
@@ -41,29 +39,27 @@ exports.saveNewProduct = (product, callback) => {
 };
 
 exports.deleteProductById = (id, callback) => {
-    console.log(id);
-    Product.deleteOne({ _id: id})
-        .exec()
+    db.products.findByPk(id)
+        .then(customer => customer.destroy())
         .then(result => {
             console.log(result);
             callback(null, result);
         })
         .catch(err => {
-            console.log('Error in deleting product : ' + JSON.stringify(err, undefined, 2));
+            console.log('Error in deleting customer : ' + JSON.stringify(err, undefined, 2));
             callback(err, null);
         });
 };
 
-exports.updateProductById = (id, updateOps, callback) => {
-    console.log(id);
-    Product.updateOne({ _id: id}, { $set: updateOps })
-        .exec()
+exports.updateProductById = (id, data, callback) => {
+    db.products.findByPk(id)
+        .then(customer => customer.update(data))
         .then(result => {
             console.log(result);
             callback(null, result);
         })
         .catch(err => {
-            console.log('Error in updating product : ' + JSON.stringify(err, undefined, 2));
+            console.log('Error in updating customer : ' + JSON.stringify(err, undefined, 2));
             callback(err, null);
         });
 };

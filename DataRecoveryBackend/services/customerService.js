@@ -1,8 +1,8 @@
-const { Customer } = require('../models/customerModel');
+const { Customer } = require('../model/customerModel');
+const db = require('../db');
 
 exports.findAllCustomers = (callback) => {
-    Customer.find()
-        .exec()
+    db.customers.findAll()
         .then(docs => {
             console.log(docs);
             callback(null, docs);
@@ -15,8 +15,7 @@ exports.findAllCustomers = (callback) => {
 
 exports.findCustomerById = (id, callback) => {
     console.log(id);
-    Customer.findById(id)
-        .exec()
+    db.customers.findByPk(id)
         .then(doc => {
             console.log(doc);
             callback(null, doc);
@@ -28,8 +27,7 @@ exports.findCustomerById = (id, callback) => {
 };
 
 exports.saveNewCustomer = (customer, callback) => {
-    console.log(customer);
-    customer.save()
+    db.customers.create(customer)
         .then(result => {
             console.log(result);
             callback(null, result);
@@ -41,9 +39,8 @@ exports.saveNewCustomer = (customer, callback) => {
 };
 
 exports.deleteCustomerById = (id, callback) => {
-    console.log(id);
-    Customer.deleteOne({ _id: id})
-        .exec()
+    db.customers.findByPk(id)
+        .then(customer => customer.destroy())
         .then(result => {
             console.log(result);
             callback(null, result);
@@ -54,10 +51,9 @@ exports.deleteCustomerById = (id, callback) => {
         });
 };
 
-exports.updateCustomerById = (id, updateOps, callback) => {
-    console.log(id);
-    Customer.updateOne({ _id: id}, { $set: updateOps })
-        .exec()
+exports.updateCustomerById = (id, data, callback) => {
+    db.customers.findByPk(id)
+        .then(customer => customer.update(data))
         .then(result => {
             console.log(result);
             callback(null, result);
