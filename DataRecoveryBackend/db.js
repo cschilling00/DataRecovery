@@ -28,8 +28,8 @@ sequelize.sync({ force: true })
         console.log(`Database & tables created!`);
 
         db.customers.bulkCreate([
-            {firstName: "Thomas",lastName: "Schuehly" },
-            {firstName: "Cassandra",lastName: "Schilling" }
+            {firstName: "Thomas",lastName: "Schuehly",postalCode:71638 },
+            {firstName: "Cassandra",lastName: "Schilling",postalCode:88433 }
 
         ])
         db.products.bulkCreate([
@@ -38,6 +38,10 @@ sequelize.sync({ force: true })
         ])
         db.faqs.bulkCreate([
             {question: "Test",answer: "Success" }
+
+        ])
+        db.orders.bulkCreate([
+            { customerId: 1 }
 
         ])
     });

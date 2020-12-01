@@ -13,7 +13,7 @@ exports.findAllOrders = (callback) => {
 };
 
 exports.findOrderById = (id, callback) => {
-    db.orders.findByPk(id)
+    db.orders.findByPk(id,{include: db.customers})
         .then(doc => {
             console.log(doc);
             callback(null, doc);
@@ -37,7 +37,7 @@ exports.saveNewOrder = (order, callback) => {
 };
 
 exports.deleteOrderById = (id, callback) => {
-    db.orders.findByPk(id)
+    db.orders.findByPk(id,{include: db.customers})
         .then(order => order.destroy())
         .exec()
         .then(result => {
@@ -52,7 +52,8 @@ exports.deleteOrderById = (id, callback) => {
 
 exports.updateOrderById = (id, data, callback) => {
     console.log(id);
-    db.orders.findByPk(id).then(order => order.update(data))
+    db.orders.findByPk(id,{include: db.customers})
+        .then(order => order.update(data))
         .then(result => {
             console.log(result);
             callback(null, result);
