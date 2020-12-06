@@ -1,7 +1,7 @@
 const db = require('../db');
 
 exports.findAllOrders = (callback) => {
-    db.orders.findAll({include: db.customers})
+    db.orders.findAll({include: [db.customers,db.products]})
         .then(docs => {
             console.log(docs);
             callback(null, docs);
@@ -13,7 +13,7 @@ exports.findAllOrders = (callback) => {
 };
 
 exports.findOrderById = (id, callback) => {
-    db.orders.findByPk(id,{include: db.customers})
+    db.orders.findByPk(id,{include: [db.customers,db.products]})
         .then(doc => {
             console.log(doc);
             callback(null, doc);
@@ -37,7 +37,7 @@ exports.saveNewOrder = (order, callback) => {
 };
 
 exports.deleteOrderById = (id, callback) => {
-    db.orders.findByPk(id,{include: db.customers})
+    db.orders.findByPk(id,{include: [db.customers,db.products]})
         .then(order => order.destroy())
         .exec()
         .then(result => {
@@ -52,7 +52,7 @@ exports.deleteOrderById = (id, callback) => {
 
 exports.updateOrderById = (id, data, callback) => {
     console.log(id);
-    db.orders.findByPk(id,{include: db.customers})
+    db.orders.findByPk(id,{include: [db.customers,db.products]})
         .then(order => order.update(data))
         .then(result => {
             console.log(result);

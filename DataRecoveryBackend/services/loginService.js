@@ -1,6 +1,6 @@
 const db = require('../db');
 exports.validateCustomer = (pPostalCode,pTrackingId, callback) => {
-    db.orders.findOne({where: {trackingId: pTrackingId}, include: db.customers})
+    db.orders.findOne({where: {trackingId: pTrackingId}, include: [db.customers,db.products]})
         .then(result => {
             if(result && result.customer && result.customer.postalCode.toString() === pPostalCode.toString()){
                 callback(null,result);

@@ -15,6 +15,9 @@ db.admin = require('./model/adminModel')(db);
 
 db.customers.hasMany(db.orders,{as: 'order', foreignKey: 'customerId'});
 db.orders.belongsTo(db.customers);
+db.products.hasMany(db.orders,{as: 'order', foreignKey: 'productId'});
+db.orders.belongsTo(db.products);
+
 sequelize.authenticate()
     .then(() => {
         console.log('Connection has been established successfully.');
@@ -42,7 +45,7 @@ sequelize.sync({ force: true })
 
         ])
         db.orders.bulkCreate([
-            { customerId: 1 }
+            { customerId: 1 ,productId: 1}
 
         ])
         db.admin.bulkCreate([
