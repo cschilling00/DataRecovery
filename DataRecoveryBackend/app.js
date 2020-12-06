@@ -9,9 +9,10 @@ const db = require('./db');
 
 const customerController = require('./controllers/customerController');
 const productController = require('./controllers/productController');
-const trackingController = require('./controllers/trackingController');
+const loginController = require('./controllers/loginController');
 const orderController = require('./controllers/orderController');
 const faqController = require('./controllers/faqController');
+const adminController = require('./controllers/adminController');
 
 const app = express();
 
@@ -30,8 +31,9 @@ app.use( (req, res, next) => {
 app.use('/customers', customerController);
 app.use('/products', productController);
 app.use('/orders', orderController);
-app.use('/tracking', trackingController);
+app.use('/login', loginController);
 app.use('/faq', faqController);
+app.use('/admin', adminController);
 
 app.use(function(req, res) {
   res.status(404);

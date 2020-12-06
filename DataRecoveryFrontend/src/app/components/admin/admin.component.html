@@ -1,1 +1,27 @@
+<div class="container-fluid row h-75 align-items-center">
+  <ng-container *ngIf="!this.loggedIn">
+
+    <div class="container">
+      <div class="card p-3">
+        <div class="col-12 col-lg-7">
+          <h2 class="m-0">Username: </h2>
+          <input type="text" class="form-control mt-3" [formControl]="username">
+        </div>
+        <div class="col-12 col-lg-2 ">
+          <h2 class="m-0">Passwort: </h2>
+          <input type="text" class="form-control mt-3" [formControl]="password">
+        </div>
+        <div class="col-12 col-lg-1 mt-3">
+          <button type="button" class="btn btn-primary" (click)="submit()">Einloggen</button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="this.loggedIn">
+    <div class="container">
+      <button type="button" class="btn btn-primary" (click)="submit()">Success</button>
+    </div>
+  </ng-container>
+</div>
+
 

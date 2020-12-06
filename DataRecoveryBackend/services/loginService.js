@@ -10,3 +10,16 @@ exports.validateCustomer = (pPostalCode,pTrackingId, callback) => {
             err => console.log(err)
     )
 };
+
+exports.validateAdmin = (pUsername, pPassword, callback) => {
+    console.log("pUsername: "+ pUsername+ " pPassword: "+pPassword);
+    db.admin.findOne({where: {username: pUsername}})
+        .then(result => {
+            if(result && result.password && result.password.toString() === pPassword.toString()) {
+                callback(null,result);
+            }else{
+                callback("Could not find validate login",null)
+            }}).catch(
+        err => console.log(err)
+    )
+};

@@ -27,6 +27,11 @@
           <div class="nav-link-text">FAQ</div>
         </a>
       </li>
+      <li ngbNavItem  [ngClass]="currentRoute == '/admin' ? 'active-page' : 'not-active'" >
+        <a ngbNavLink routerLink="admin" (click)="isMenuCollapsed = true">
+          <div class="nav-link-text">Admin</div>
+        </a>
+      </li>
     </ul>
   </div>
 </nav>

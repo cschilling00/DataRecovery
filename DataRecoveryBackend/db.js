@@ -11,6 +11,7 @@ db.customers = require('./model/customerModel')(db);
 db.faqs = require('./model/faqModel')(db);
 db.orders = require('./model/orderModel')(db);
 db.products = require('./model/productModel')(db);
+db.admin = require('./model/adminModel')(db);
 
 db.customers.hasMany(db.orders,{as: 'order', foreignKey: 'customerId'});
 db.orders.belongsTo(db.customers);
@@ -42,6 +43,10 @@ sequelize.sync({ force: true })
         ])
         db.orders.bulkCreate([
             { customerId: 1 }
+
+        ])
+        db.admin.bulkCreate([
+            { username: "Oro", password: "oro" }
 
         ])
     });
