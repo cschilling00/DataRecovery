@@ -5,11 +5,11 @@
       <div class="card p-3">
         <div class="col-12 col-lg-7">
           <h2 class="m-0">Tracking ID: </h2>
-          <input type="text" class="form-control mt-3" [formControl]="trackingId">
+          <input type="text" (keydown.enter)="submitPostalCode()" class="form-control mt-3" [formControl]="trackingId">
         </div>
         <div class="col-12 col-lg-2 ">
           <h2 class="m-0">Postleitzahl: </h2>
-          <input type="text" class="form-control mt-3" [formControl]="postalCode">
+          <input type="text" (keydown.enter)="submitPostalCode()" class="form-control mt-3" [formControl]="postalCode">
         </div>
         <div class="col-12 col-lg-1 mt-3">
           <button type="button" class="btn btn-primary" (click)="submitPostalCode()">Bestätigen</button>

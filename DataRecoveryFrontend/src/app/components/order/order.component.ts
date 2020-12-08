@@ -26,7 +26,7 @@ export class OrderComponent implements OnInit {
     this.loginService.validateTrackingId(this.trackingId.value,parseInt(this.postalCode.value)).subscribe( order => {
       this.order = order[0];
       if(this.order.trackingId == this.trackingId.value && parseInt(this.postalCode.value) == this.order.customer.postalCode ){
-        this.loggedIn = true
+        this.loggedIn = true;
       }else{
         console.log('Falsche Tracking ID')
       }
