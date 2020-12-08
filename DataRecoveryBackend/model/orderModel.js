@@ -14,9 +14,5 @@ module.exports = (db) => {
         }
     });
 
-
-    //Order.hasOne(db.customers)
-    // Order.hasOne(db.products)
-
     return Order;
 };

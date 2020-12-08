@@ -15,5 +15,8 @@
     "rand-token": "^1.0.1",
     "sequelize": "^6.3.5",
     "sqlite3": "^5.0.0"
+  },
+  "devDependencies": {
+    "handlebars": "^4.5.0"
   }
 }
