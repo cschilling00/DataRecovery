@@ -15,6 +15,7 @@ import { OrderComponent } from './components/order/order.component';
 import {NgxWigModule} from 'ngx-wig';
 import {ReactiveFormsModule} from '@angular/forms';
 import { FaqComponent } from './components/faq/faq.component';
+import { EditAdminComponent } from './components/edit-admin/edit-admin.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { FaqComponent } from './components/faq/faq.component';
     AdminComponent,
     OrderComponent,
     FaqComponent,
+    EditAdminComponent,
   ],
   imports: [
     BrowserModule,

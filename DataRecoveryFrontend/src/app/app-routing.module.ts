@@ -12,7 +12,9 @@ const routes: Routes = [
   {path: 'faq', component: FaqComponent},
   {path: 'order', component: OrderComponent},
   {path: 'admin', component: AdminComponent},
-  {path: 'static', component: StaticComponent},
+  {path: 'editFaqs', component: StaticComponent},
+  {path: 'editProducts', component: StaticComponent},
+  {path: 'manageAdmins', component: StaticComponent},
   {path: '',   redirectTo: '/home', pathMatch: 'full' }
 ];
 

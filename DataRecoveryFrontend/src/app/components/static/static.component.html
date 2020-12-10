@@ -1,1 +1,100 @@
-<p>static works!</p>
+  <div class="container-fluid row  align-items-start">
+    <div class="container col-6 row justify-content-around mx-auto mt-5">
+      <button type="button" class="btn btn-primary" routerLink="/editFaqs">Edit FAQ</button>
+      <button type="button" class="btn btn-primary" routerLink="/editProducts">Edit Products</button>
+      <button type="button" class="btn btn-primary" routerLink="/manageAdmins">Manage Admins</button>
+    </div>
+  </div>
+
+  <ng-container *ngIf="this.router.url == '/editFaqs'">
+    <div class="container-fluid row h-50 align-items-start">
+      <div class="container col-6 row justify-content-around mx-auto mt-5">
+        <h1>FAQs</h1>
+        <button type="button" class="btn btn-dark" (click)="createFAQ()">Create new FAQ</button>
+        <table class="table table-striped mt-5">
+          <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Question</th>
+            <th scope="col">Answer</th>
+          </tr>
+          </thead>
+          <tbody>
+          <ng-container *ngFor="let faq of faqs; index as i">
+            <tr>
+              <td scope="row">{{this.i+1}}</td>
+              <td>{{faq.question}}</td>
+              <td>{{faq.answer}}</td>
+              <td>
+                <button type="button" class="btn btn-dark" (click)="editFaq(i, faq)">Edit</button>
+              </td>
+            </tr>
+          </ng-container>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </ng-container>
+
+<ng-container *ngIf="this.router.url == '/editProducts'">
+  <div class="container-fluid row h-50 align-items-start">
+    <div class="container col-6 row justify-content-around mx-auto mt-5">
+      <h1>Products</h1>
+      <button type="button" class="btn btn-dark" (click)="createProduct()">Create new Product</button>
+      <table class="table table-striped mt-5">
+        <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Productname</th>
+          <th scope="col">Category</th>
+          <th scope="col">Prize</th>
+        </tr>
+        </thead>
+        <tbody>
+        <ng-container *ngFor="let product of products; index as i">
+          <tr>
+            <td scope="row">{{this.i+1}}</td>
+            <td>{{product.productName}}</td>
+            <td>{{product.category}}</td>
+            <td>{{product.price}}</td>
+            <td>
+              <button type="button" class="btn btn-dark" (click)="editProduct(i, product)">Edit</button>
+            </td>
+          </tr>
+        </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="this.router.url == '/manageAdmins'">
+  <div class="container-fluid row h-50 align-items-start">
+    <div class="container col-6 row justify-content-around mx-auto mt-5">
+      <h1>Admins</h1>
+      <button type="button" class="btn btn-dark" (click)="createAdmin()">Create new Admin</button>
+      <table class="table table-striped mt-5">
+        <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Username</th>
+          <th scope="col">Password</th>
+          <th scope="col">Edit/Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <ng-container *ngFor="let admin of admins; index as i">
+          <tr>
+            <td scope="row">{{admin.id}}</td>
+            <td>{{admin.username}}</td>
+            <td>{{admin.password}}</td>
+            <td>
+              <button type="button" class="btn btn-dark" (click)="open(admin)">Open Edit Modal</button>
+            </td>
+          </tr>
+        </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</ng-container>
