@@ -16,25 +16,14 @@ import {OrderService} from "../../shared/services/order.service";
 export class OrderFormComponent implements OnInit {
   private customer: Customer;
   private order: Order;
-  public products: Product[];
-  firstName = new FormControl('');
-  lastName = new FormControl('');
-  email = new FormControl('');
-  product = new FormControl('');
-  street = new FormControl('');
-  city = new FormControl('');
-  tel = new FormControl('');
+
 
 
   constructor(private productService: ProductService, private customerService: CustomerService, private orderService: OrderService) { }
 
   ngOnInit(): void {
-    this.productService.getProducts().subscribe(data => {
-      this.products = data;
-    });
   }
 
-  submit()
 
 
 

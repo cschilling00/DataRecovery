@@ -17,8 +17,8 @@ const routes: Routes = [
   {path: 'editProducts', component: StaticComponent},
   {path: 'editNews', component: StaticComponent},
   {path: 'manageAdmins', component: StaticComponent},
+  {path: 'order-form', component: OrderFormComponent},
   {path: '',   redirectTo: '/home', pathMatch: 'full' },
-  {path: 'order-form', component: OrderFormComponent}
 ];
 
 @NgModule({
