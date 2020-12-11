@@ -14,6 +14,7 @@ const orderController = require('./controllers/orderController');
 const faqController = require('./controllers/faqController');
 const adminController = require('./controllers/adminController');
 const invoiceController = require('./controllers/invoiceController');
+const newsController = require('./controllers/newsController');
 
 const app = express();
 
@@ -36,6 +37,7 @@ app.use('/login', loginController);
 app.use('/faq', faqController);
 app.use('/admin', adminController);
 app.use('/invoice', invoiceController)
+app.use('/news', newsController);
 
 app.use(function(req, res) {
   res.status(404);
