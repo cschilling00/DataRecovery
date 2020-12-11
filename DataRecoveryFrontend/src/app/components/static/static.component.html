@@ -2,6 +2,7 @@
     <div class="container col-6 row justify-content-around mx-auto mt-5">
       <button type="button" class="btn btn-primary" routerLink="/editFaqs">Edit FAQ</button>
       <button type="button" class="btn btn-primary" routerLink="/editProducts">Edit Products</button>
+      <button type="button" class="btn btn-primary" routerLink="/editNews">Edit News</button>
       <button type="button" class="btn btn-primary" routerLink="/manageAdmins">Manage Admins</button>
     </div>
   </div>
@@ -59,6 +60,36 @@
             <td>{{product.price}}</td>
             <td>
               <button type="button" class="btn btn-dark" (click)="editProduct(product)">Edit</button>
+            </td>
+          </tr>
+        </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="this.router.url == '/editNews'">
+  <div class="container-fluid row h-50 align-items-start">
+    <div class="container col-6 row justify-content-around mx-auto mt-5">
+      <h1>News</h1>
+      <button type="button" class="btn btn-dark" (click)="createNews()">Create new News</button>
+      <table class="table table-striped mt-5">
+        <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Titel</th>
+          <th scope="col">Text</th>
+        </tr>
+        </thead>
+        <tbody>
+        <ng-container *ngFor="let news of newsList">
+          <tr>
+            <td scope="row">{{news.id}}</td>
+            <td>{{news.title}}</td>
+            <td>{{news.text}}</td>
+            <td>
+              <button type="button" class="btn btn-dark" (click)="editNews(news)">Edit News</button>
             </td>
           </tr>
         </ng-container>

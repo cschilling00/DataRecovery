@@ -10,6 +10,9 @@ import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {FaqEditComponent} from "../faq-edit/faq-edit.component";
 import {ProductEditComponent} from "../product-edit/product-edit.component";
 import {AdminEditComponent} from "../admin-edit/admin-edit.component";
+import {News} from "../../shared/models/news";
+import {NewsService} from "../../shared/services/news.service";
+import {NewsEditComponent} from "../news-edit/news-edit.component";
 
 @Component({
   selector: 'app-static',
@@ -22,10 +25,11 @@ export class StaticComponent implements OnInit {
   public admin: Admin;
   public faqs: Faq[];
   public products: Product[];
+  public newsList: News[];
   public closeResult = '';
 
   constructor(public router: Router, private adminService: AdminService, private faqService: FaqService,
-              private modalService: NgbModal, private  productService: ProductService) { }
+              private modalService: NgbModal, private  productService: ProductService, private newsService: NewsService) { }
 
   ngOnInit(): void {
     this.adminService.getAdmins().subscribe(admins => {
@@ -39,6 +43,10 @@ export class StaticComponent implements OnInit {
 
     this.productService.getProducts().subscribe(products => {
       this.products = products;
+    });
+
+    this.newsService.getNews().subscribe(news => {
+      this.newsList = news;
     });
   }
 
@@ -117,6 +125,24 @@ export class StaticComponent implements OnInit {
     });
   }
 
+  createNews(){
+    const modalRef = this.modalService.open(NewsEditComponent, {size: 'xl'});
+    const news: News = {} as News;
+    modalRef.componentInstance.create = true;
+    modalRef.componentInstance.news = news;
+    modalRef.componentInstance.newsUpdated.subscribe((data) => {
+      if (data === true) {window.location.reload(); }
+    });
+  }
 
-
+  editNews(news: News){
+    const  modalRef = this.modalService.open(NewsEditComponent, {size: 'l'});
+    modalRef.componentInstance.news = news;
+    modalRef.componentInstance.create = false;
+    modalRef.componentInstance.newsUpdated.subscribe((data) => {
+      if (data === true) {
+        window.location.reload();
+      }
+    });
+  }
 }

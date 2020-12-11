@@ -18,6 +18,7 @@ import { FaqComponent } from './components/faq/faq.component';
 import { FaqEditComponent } from './components/faq-edit/faq-edit.component';
 import { ProductEditComponent } from './components/product-edit/product-edit.component';
 import { AdminEditComponent } from './components/admin-edit/admin-edit.component';
+import { NewsEditComponent } from './components/news-edit/news-edit.component';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { AdminEditComponent } from './components/admin-edit/admin-edit.component
     FaqEditComponent,
     ProductEditComponent,
     AdminEditComponent,
+    NewsEditComponent,
   ],
   imports: [
     BrowserModule,

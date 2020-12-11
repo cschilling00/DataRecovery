@@ -46,7 +46,7 @@ sequelize.sync({ force: true })
             {question: "Test2",answer: "Success2" }
 
         ])
-        db.faqs.bulkCreate([
+        db.news.bulkCreate([
             {title: "Testtitle",text: "Testtext" }
 
         ])

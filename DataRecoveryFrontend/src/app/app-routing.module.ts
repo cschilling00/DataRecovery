@@ -14,6 +14,7 @@ const routes: Routes = [
   {path: 'admin', component: AdminComponent},
   {path: 'editFaqs', component: StaticComponent},
   {path: 'editProducts', component: StaticComponent},
+  {path: 'editNews', component: StaticComponent},
   {path: 'manageAdmins', component: StaticComponent},
   {path: '',   redirectTo: '/home', pathMatch: 'full' }
 ];
