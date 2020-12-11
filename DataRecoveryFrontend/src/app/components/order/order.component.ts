@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {Order} from '../../shared/models/order';
 import {CustomNumberValidator} from '../../shared/validators/CustomNumberValidator';
-import {TrackingService} from '../../shared/services/tracking.service';
+import {LoginService} from "../../shared/services/login.service";
 
 @Component({
   selector: 'app-order',
@@ -15,7 +15,7 @@ export class OrderComponent implements OnInit {
   postalCode = new FormControl('', [CustomNumberValidator.numeric]);
   trackingId = new FormControl('');
 
-  constructor(private trackingService: TrackingService) { }
+  constructor(private loginService: LoginService) { }
 
   ngOnInit(): void {
   }
@@ -23,7 +23,7 @@ export class OrderComponent implements OnInit {
   submitPostalCode() {
     console.log(this.postalCode.value); //88433
     console.log(this.trackingId.value);
-    this.trackingService.validateTrackingId(this.trackingId.value,parseInt(this.postalCode.value)).subscribe( order => {
+    this.loginService.validateTrackingId(this.trackingId.value,parseInt(this.postalCode.value)).subscribe( order => {
   console.log(order);
       this.order = order;
       if(this.order.trackingId == this.trackingId.value && parseInt(this.postalCode.value) == this.order.customer.postalCode ){
