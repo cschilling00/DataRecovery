@@ -41,11 +41,13 @@ sequelize.sync({ force: true })
 
         ])
         db.faqs.bulkCreate([
-            {question: "Test",answer: "Success" }
+            {question: "Test",answer: "Success" },
+            {question: "Test2",answer: "Success2" }
 
         ])
         db.orders.bulkCreate([
-            { customerId: 1 ,productId: 1}
+            { customerId: 1 ,productId: 1},
+            { customerId: 2 ,productId: 1},
 
         ])
         db.admin.bulkCreate([

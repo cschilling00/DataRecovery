@@ -27,7 +27,7 @@ export class OrderComponent implements OnInit {
   console.log(order);
       this.order = order;
       if(this.order.trackingId == this.trackingId.value && parseInt(this.postalCode.value) == this.order.customer.postalCode ){
-        this.loggedIn = true
+        this.loggedIn = true;
       }else{
         console.log('Falsche Tracking ID')
       }

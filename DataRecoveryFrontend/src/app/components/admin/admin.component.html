@@ -1,27 +1,61 @@
-<div class="container-fluid row h-75 align-items-center">
-  <ng-container *ngIf="!this.loggedIn">
+<ng-container *ngIf="!this.loggedIn">
 
-    <div class="container">
+  <div class="container-fluid row h-75 align-items-center">
+    <div class="container ">
       <div class="card p-3">
-        <div class="col-12 col-lg-7">
+        <div class="col-12 col-lg-4">
           <h2 class="m-0">Username: </h2>
-          <input type="text" class="form-control mt-3" [formControl]="username">
+          <input type="text" (keydown.enter)="submit()" class="form-control mt-3" [formControl]="username">
         </div>
-        <div class="col-12 col-lg-2 ">
+        <div class="col-12 col-lg-4 ">
           <h2 class="m-0">Passwort: </h2>
-          <input type="text" class="form-control mt-3" [formControl]="password">
+          <input type="text" (keydown.enter)="submit()" class="form-control mt-3" [formControl]="password">
         </div>
         <div class="col-12 col-lg-1 mt-3">
           <button type="button" class="btn btn-primary" (click)="submit()">Einloggen</button>
         </div>
       </div>
     </div>
-  </ng-container>
-  <ng-container *ngIf="this.loggedIn">
-    <div class="container">
-      <button type="button" class="btn btn-primary" (click)="submit()">Success</button>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="this.loggedIn">
+  <div class="container-fluid row  align-items-start">
+    <div class="container col-6 row justify-content-around mx-auto mt-5">
+      <button type="button" class="btn btn-primary" routerLink="/editFaqs">Edit FAQ</button>
+      <button type="button" class="btn btn-primary" routerLink="/editProducts">Edit Products</button>
+      <button type="button" class="btn btn-primary" routerLink="/manageAdmins">Manage Admins</button>
     </div>
-  </ng-container>
-</div>
+  </div>
+
+  <div class="container-fluid row h-75 align-items-start">
+    <div class="container col-6 row justify-content-around mx-auto mt-5">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Date</th>
+          <th scope="col">Customer</th>
+          <th scope="col">Tracking ID</th>
+        </tr>
+        </thead>
+        <tbody>
+        <ng-container *ngFor="let order of orders; index as i">
+          <tr>
+            <td scope="row">{{this.i+1}}</td>
+            <td>{{this.order.orderDate | date}}</td>
+            <td>{{this.order.customer.firstName}} {{this.order.customer.lastName}}</td>
+            <td>{{this.order.trackingId}}</td>
+          </tr>
+        </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+</ng-container>
+
+
 
 

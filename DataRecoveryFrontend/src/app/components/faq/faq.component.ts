@@ -14,12 +14,12 @@ export class FaqComponent implements OnInit {
   faqs$: Observable<Faq[]>;
   public isCollapsed = true;
 
-  constructor(private backendService: FaqService) { }
+  constructor(private faqService: FaqService) { }
 
   ngOnInit(): void {
 
-    this.faqs$ = this.backendService.getFaqs();
-    this.backendService.getFaqs().
+    this.faqs$ = this.faqService.getFaqs();
+    this.faqService.getFaqs().
     subscribe(data => {
       this.faqs = data;
       console.log(data);
