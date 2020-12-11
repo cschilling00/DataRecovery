@@ -4,6 +4,7 @@ import {HomeComponent} from './components/home/home.component';
 import {OrderComponent} from './components/order/order.component';
 import {FaqComponent} from './components/faq/faq.component';
 import {AdminComponent} from './components/admin/admin.component';
+import {OrderFormComponent} from './components/order-form/order-form.component';
 
 
 const routes: Routes = [
@@ -12,6 +13,7 @@ const routes: Routes = [
   {path: 'order', component: OrderComponent},
   {path: 'admin', component: AdminComponent},
   {path: '',   redirectTo: '/home', pathMatch: 'full' },
+  {path: 'order-form', component: OrderFormComponent}
 ];
 
 @NgModule({
