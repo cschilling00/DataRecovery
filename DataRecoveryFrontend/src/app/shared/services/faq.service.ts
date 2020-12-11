@@ -28,7 +28,7 @@ export class FaqService {
     return this.http.post(this.backendUrl + 'faq/', faq);
   }
 
-  deleteFaq(id: Faq): Observable<any> {
+  deleteFaq(id: number): Observable<any> {
     return this.http.delete(`${this.backendUrl + 'faq/'}${id}`);
   }
 }

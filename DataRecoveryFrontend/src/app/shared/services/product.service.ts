@@ -28,7 +28,7 @@ export class ProductService {
     return this.http.post(this.backendUrl + 'products/', product);
   }
 
-  deleteProduct(id: Product): Observable<any> {
+  deleteProduct(id: number): Observable<any> {
     return this.http.delete(`${this.backendUrl + 'products/'}${id}`);
   }
 }

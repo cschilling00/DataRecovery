@@ -5,11 +5,11 @@ import {AdminService} from '../../shared/services/admin.service';
 import {ModalDismissReasons, NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'app-edit-admin',
-  templateUrl: './edit-admin.component.html',
-  styleUrls: ['./edit-admin.component.scss']
+  selector: 'app-admin-edit',
+  templateUrl: './admin-edit.component.html',
+  styleUrls: ['./admin-edit.component.scss']
 })
-export class EditAdminComponent implements OnInit {
+export class AdminEditComponent implements OnInit {
 
   @Input() admin: Admin;
   @Input() create: boolean;

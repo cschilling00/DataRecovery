@@ -7,7 +7,9 @@ import {Faq} from '../../shared/models/faq';
 import {ProductService} from '../../shared/services/product.service';
 import {Product} from '../../shared/models/product';
 import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {EditAdminComponent} from '../edit-admin/edit-admin.component';
+import {FaqEditComponent} from "../faq-edit/faq-edit.component";
+import {ProductEditComponent} from "../product-edit/product-edit.component";
+import {AdminEditComponent} from "../admin-edit/admin-edit.component";
 
 @Component({
   selector: 'app-static',
@@ -40,26 +42,7 @@ export class StaticComponent implements OnInit {
     });
   }
 
-  createAdmin() {
-    const modalRef = this.modalService.open(EditAdminComponent, {size: 'xl'});
-    const admin: Admin = {} as Admin;
-    modalRef.componentInstance.create = true;
-    modalRef.componentInstance.admin = admin;
-    modalRef.componentInstance.adminUpdated.subscribe((data) => {
-      if (data === true) {window.location.reload(); }
-    });
-  }
 
-  open(admin: Admin){
-    const  modalRef = this.modalService.open(EditAdminComponent, {size: 'l'});
-    modalRef.componentInstance.admin = admin;
-    modalRef.componentInstance.create = false;
-    modalRef.componentInstance.adminUpdated.subscribe((data) => {
-      if (data === true) {
-        window.location.reload();
-      }
-    });
-  }
 
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
@@ -71,34 +54,67 @@ export class StaticComponent implements OnInit {
     }
   }
 
-  editProduct(i: number, product: Product) {
-    this.productService.updateProduct(i, product).subscribe(products => {
-
+  createAdmin() {
+    const modalRef = this.modalService.open(AdminEditComponent, {size: 'xl'});
+    const admin: Admin = {} as Admin;
+    modalRef.componentInstance.create = true;
+    modalRef.componentInstance.admin = admin;
+    modalRef.componentInstance.adminUpdated.subscribe((data) => {
+      if (data === true) {window.location.reload(); }
     });
   }
 
-  editFaq(i: number, faq) {
-    this.faqService.updateFaq(i, faq).subscribe(faqs => {
-
+  editAdmin(admin: Admin){
+    const  modalRef = this.modalService.open(AdminEditComponent, {size: 'l'});
+    modalRef.componentInstance.admin = admin;
+    modalRef.componentInstance.create = false;
+    modalRef.componentInstance.adminUpdated.subscribe((data) => {
+      if (data === true) {
+        window.location.reload();
+      }
     });
   }
 
-  deleteFAQ() {
-    console.log("delete");
-  }
-  deleteProduct() {
-    console.log("delete");
-  }
-  deleteAdmin() {
-    console.log("delete");
+  createFAQ() {
+    const modalRef = this.modalService.open(FaqEditComponent, {size: 'xl'});
+    const faq: Faq = {} as Faq;
+    modalRef.componentInstance.create = true;
+    modalRef.componentInstance.faq = faq;
+    modalRef.componentInstance.faqUpdated.subscribe((data) => {
+      if (data === true) {window.location.reload(); }
+    });
   }
 
+  editFaq(faq: Faq) {
+    const  modalRef = this.modalService.open(FaqEditComponent, {size: 'l'});
+    modalRef.componentInstance.faq = faq;
+    modalRef.componentInstance.create = false;
+    modalRef.componentInstance.faqUpdated.subscribe((data) => {
+      if (data === true) {
+        window.location.reload();
+      }
+    });
+  }
 
   createProduct() {
-    console.log("create");
+    const modalRef = this.modalService.open(ProductEditComponent, {size: 'xl'});
+    const product: Product = {} as Product;
+    modalRef.componentInstance.create = true;
+    modalRef.componentInstance.product = product;
+    modalRef.componentInstance.productUpdated.subscribe((data) => {
+      if (data === true) {window.location.reload(); }
+    });
   }
-  createFAQ() {
-    console.log("create");
+
+  editProduct(product: Product) {
+    const  modalRef = this.modalService.open(ProductEditComponent, {size: 'l'});
+    modalRef.componentInstance.product = product;
+    modalRef.componentInstance.create = false;
+    modalRef.componentInstance.productUpdated.subscribe((data) => {
+      if (data === true) {
+        window.location.reload();
+      }
+    });
   }
 
 

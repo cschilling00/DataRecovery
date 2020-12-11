@@ -26,7 +26,7 @@
               <td>{{faq.question}}</td>
               <td>{{faq.answer}}</td>
               <td>
-                <button type="button" class="btn btn-dark" (click)="editFaq(i, faq)">Edit</button>
+                <button type="button" class="btn btn-dark" (click)="editFaq(faq)">Edit</button>
               </td>
             </tr>
           </ng-container>
@@ -51,14 +51,14 @@
         </tr>
         </thead>
         <tbody>
-        <ng-container *ngFor="let product of products; index as i">
+        <ng-container *ngFor="let product of products">
           <tr>
-            <td scope="row">{{this.i+1}}</td>
+            <td scope="row">{{product.id}}</td>
             <td>{{product.productName}}</td>
             <td>{{product.category}}</td>
             <td>{{product.price}}</td>
             <td>
-              <button type="button" class="btn btn-dark" (click)="editProduct(i, product)">Edit</button>
+              <button type="button" class="btn btn-dark" (click)="editProduct(product)">Edit</button>
             </td>
           </tr>
         </ng-container>
@@ -89,7 +89,7 @@
             <td>{{admin.username}}</td>
             <td>{{admin.password}}</td>
             <td>
-              <button type="button" class="btn btn-dark" (click)="open(admin)">Open Edit Modal</button>
+              <button type="button" class="btn btn-dark" (click)="editAdmin(admin)">Open Edit Modal</button>
             </td>
           </tr>
         </ng-container>

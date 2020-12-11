@@ -14,8 +14,8 @@
 
 <div *ngIf="admin || create == true">
   <div class="modal-header">
-    <h4 class="modal-title" *ngIf="admin">Edit Admin: {{admin | json}}</h4>
-    <h4 class="modal-title" *ngIf="create == true">Create New Admin</h4>
+    <h4 class="modal-title" *ngIf="!create">Edit Admin: {{admin.id}}</h4>
+    <h4 class="modal-title" *ngIf="create">Create New Admin</h4>
     <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -26,8 +26,8 @@
         <form [formGroup]="EditForm" class="form-group">
           <div class="form-row">
             <div class="col-lg-4">
-            <label>Username:</label>
-            <input class="form-control" type="text" formControlName="username">
+              <label>Username:</label>
+              <input class="form-control" type="text" formControlName="username">
             </div>
           </div>
           <div class="form-row">
