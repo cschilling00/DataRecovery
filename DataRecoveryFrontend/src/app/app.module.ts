@@ -15,6 +15,7 @@ import { OrderComponent } from './components/order/order.component';
 import {NgxWigModule} from 'ngx-wig';
 import {ReactiveFormsModule} from '@angular/forms';
 import { FaqComponent } from './components/faq/faq.component';
+import { OrderFormComponent } from './components/order-form/order-form.component';
 import { FaqEditComponent } from './components/faq-edit/faq-edit.component';
 import { ProductEditComponent } from './components/product-edit/product-edit.component';
 import { AdminEditComponent } from './components/admin-edit/admin-edit.component';
@@ -30,6 +31,7 @@ import { NewsEditComponent } from './components/news-edit/news-edit.component';
     AdminComponent,
     OrderComponent,
     FaqComponent,
+    OrderFormComponent,
     FaqEditComponent,
     ProductEditComponent,
     AdminEditComponent,
