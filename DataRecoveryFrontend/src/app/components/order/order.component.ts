@@ -24,11 +24,12 @@ export class OrderComponent implements OnInit {
     console.log(this.postalCode.value); //88433
     console.log(this.trackingId.value);
     this.loginService.validateTrackingId(this.trackingId.value,parseInt(this.postalCode.value)).subscribe( order => {
-      this.order = order[0];
+      this.order = order;
+      console.log(order);
       if(this.order.trackingId == this.trackingId.value && parseInt(this.postalCode.value) == this.order.customer.postalCode ){
         this.loggedIn = true;
       }else{
-        console.log('Falsche Tracking ID')
+        console.log('Falsche Tracking ID');
       }
     });
   }

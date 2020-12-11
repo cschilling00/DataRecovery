@@ -35,7 +35,8 @@ sequelize.sync({ force: true })
 
         ])
         db.products.bulkCreate([
-            {productName: "SSD",price: 50, category: "Flash"}
+            {productName: "SSD",price: 50, category: "Flash"},
+            {productName: "HDD",price: 80, category: "Flash"},
 
         ])
         db.faqs.bulkCreate([
@@ -43,8 +44,8 @@ sequelize.sync({ force: true })
             {question: "Test2",answer: "Success2" }
 
         ])
-        db.faqs.bulkCreate([
-            {title: "Testtitle",text: "Testtext" }
+        db.news.bulkCreate([
+            {title: "40% Rabatt auf Ihre defekten Speicher",text: "Nur für Aufträge bis Silvester!" }
 
         ])
         db.orders.bulkCreate([
