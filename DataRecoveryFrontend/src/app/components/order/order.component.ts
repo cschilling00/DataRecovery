@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {Order} from '../../shared/models/order';
 import {CustomNumberValidator} from '../../shared/validators/CustomNumberValidator';
-import {LoginService} from "../../shared/services/login.service";
+import {LoginService} from '../../shared/services/login.service';
 
 @Component({
   selector: 'app-order',
@@ -29,7 +29,7 @@ export class OrderComponent implements OnInit {
       if(this.order.trackingId == this.trackingId.value && parseInt(this.postalCode.value) == this.order.customer.postalCode ){
         this.loggedIn = true;
       }else{
-        console.log('Falsche Tracking ID')
+        console.log('Falsche Tracking ID');
       }
     });
   }
