@@ -34,11 +34,11 @@ sequelize.sync({ force: true })
 
         db.customers.bulkCreate([
             {firstName: "Cassandra",lastName: "Schilling",tel: "015249788", email: "cassandra@test.de",
-                postalCode: "88433", city: "Ingerkingen", street: "Hauptstr.", houseNumber: "24"},
+                postalCode: "88433", city: "Ingerkingen", street: "Hauptstr. 24"},
             {firstName: "Elvira",lastName: "Kraft",tel: "015212368", email: "elvira@test.de", postalCode: "71638",
-                city: "Ludwigsburg", street: "Mörikestr.", houseNumber: "12"},
+                city: "Ludwigsburg", street: "Mörikestr. 12"},
             {firstName: "Thomas",lastName: "Moll",tel: "0154664", email: "thomas@test.de", postalCode: "71638",
-                city: "Ludwigsburg", street: "Friedrichstr.", houseNumber: "53"}
+                city: "Ludwigsburg", street: "Friedrichstr. 53"}
 
         ])
         db.products.bulkCreate([
@@ -73,13 +73,10 @@ sequelize.sync({ force: true })
             {title: "40% Rabatt auf Ihre defekten Speicher",text: "Nur für Aufträge bis Silvester!" }
 
         ])
-        db.news.bulkCreate([
-            {title: "Testtitle",text: "Testtext" }
-
-        ])
         db.orders.bulkCreate([
             { customerId: 1 ,productId: 1},
-            { customerId: 2 ,productId: 1},
+            { customerId: 2 ,productId: 5},
+            { customerId: 3 ,productId: 8},
 
         ])
         db.admin.bulkCreate([

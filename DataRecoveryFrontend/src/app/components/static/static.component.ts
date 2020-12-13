@@ -13,6 +13,9 @@ import {AdminEditComponent} from "../admin-edit/admin-edit.component";
 import {News} from "../../shared/models/news";
 import {NewsService} from "../../shared/services/news.service";
 import {NewsEditComponent} from "../news-edit/news-edit.component";
+import {Order} from '../../shared/models/order';
+import {OrderEditComponent} from '../order-edit/order-edit.component';
+import {OrderService} from '../../shared/services/order.service';
 
 @Component({
   selector: 'app-static',
@@ -27,9 +30,13 @@ export class StaticComponent implements OnInit {
   public products: Product[];
   public newsList: News[];
   public closeResult = '';
+  public orders: Order[];
 
   constructor(public router: Router, private adminService: AdminService, private faqService: FaqService,
-              private modalService: NgbModal, private  productService: ProductService, private newsService: NewsService) { }
+              private modalService: NgbModal,
+              private  productService: ProductService,
+              private newsService: NewsService,
+              private orderService: OrderService) { }
 
   ngOnInit(): void {
     this.adminService.getAdmins().subscribe(admins => {
@@ -47,6 +54,11 @@ export class StaticComponent implements OnInit {
 
     this.newsService.getNews().subscribe(news => {
       this.newsList = news;
+    });
+
+    this.orderService.getOrders().subscribe(orders => {
+      this.orders = orders;
+      console.log(this.orders);
     });
   }
 
@@ -140,6 +152,17 @@ export class StaticComponent implements OnInit {
     modalRef.componentInstance.news = news;
     modalRef.componentInstance.create = false;
     modalRef.componentInstance.newsUpdated.subscribe((data) => {
+      if (data === true) {
+        window.location.reload();
+      }
+    });
+  }
+
+  editState(order: Order) {
+    const  modalRef = this.modalService.open(OrderEditComponent, {size: 'l'});
+    modalRef.componentInstance.order = order;
+    modalRef.componentInstance.create = false;
+    modalRef.componentInstance.orderUpdated.subscribe((data) => {
       if (data === true) {
         window.location.reload();
       }

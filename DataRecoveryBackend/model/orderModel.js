@@ -8,9 +8,13 @@ module.exports = (db) => {
                 return randtoken.generate(8)
             }
         },
-            orderDate: {
-                type: db.Sequelize.DATE,
-                defaultValue: db.Sequelize.NOW
+        orderDate: {
+            type: db.Sequelize.DATE,
+            defaultValue: db.Sequelize.NOW
+        },
+        state: {
+            type: db.Sequelize.STRING,
+            defaultValue: "Noch nicht bearbeitet"
         }
     });
 

@@ -4,12 +4,13 @@
       <button type="button" class="btn btn-primary" routerLink="/editProducts">Edit Products</button>
       <button type="button" class="btn btn-primary" routerLink="/editNews">Edit News</button>
       <button type="button" class="btn btn-primary" routerLink="/manageAdmins">Manage Admins</button>
+      <button type="button" class="btn btn-primary" routerLink="/manageOrders">Manage Orders</button>
     </div>
   </div>
 
   <ng-container *ngIf="this.router.url == '/editFaqs'">
-    <div class="container-fluid row h-50 align-items-start">
-      <div class="container col-6 row justify-content-around mx-auto mt-5">
+    <div class="container-fluid row align-items-start">
+      <div class="container col-6 row justify-content-around mx-auto mt-5 mb-5">
         <h1>FAQs</h1>
         <button type="button" class="btn btn-dark" (click)="createFAQ()">Create new FAQ</button>
         <table class="table table-striped mt-5">
@@ -38,8 +39,8 @@
   </ng-container>
 
 <ng-container *ngIf="this.router.url == '/editProducts'">
-  <div class="container-fluid row h-50 align-items-start">
-    <div class="container col-6 row justify-content-around mx-auto mt-5">
+  <div class="container-fluid row align-items-start">
+    <div class="container col-6 row justify-content-around mx-auto mt-5 mb-5">
       <h1>Products</h1>
       <button type="button" class="btn btn-dark" (click)="createProduct()">Create new Product</button>
       <table class="table table-striped mt-5">
@@ -70,8 +71,8 @@
 </ng-container>
 
 <ng-container *ngIf="this.router.url == '/editNews'">
-  <div class="container-fluid row h-50 align-items-start">
-    <div class="container col-6 row justify-content-around mx-auto mt-5">
+  <div class="container-fluid row align-items-start">
+    <div class="container col-6 row justify-content-around mx-auto mt-5 mb-5">
       <h1>News</h1>
       <button type="button" class="btn btn-dark" (click)="createNews()">Create new News</button>
       <table class="table table-striped mt-5">
@@ -100,8 +101,8 @@
 </ng-container>
 
 <ng-container *ngIf="this.router.url == '/manageAdmins'">
-  <div class="container-fluid row h-50 align-items-start">
-    <div class="container col-6 row justify-content-around mx-auto mt-5">
+  <div class="container-fluid row align-items-start">
+    <div class="container col-6 row justify-content-around mx-auto mt-5 mb-5">
       <h1>Admins</h1>
       <button type="button" class="btn btn-dark" (click)="createAdmin()">Create new Admin</button>
       <table class="table table-striped mt-5">
@@ -129,3 +130,40 @@
     </div>
   </div>
 </ng-container>
+
+  <ng-container *ngIf="this.router.url == '/manageOrders'">
+
+    <div class="container-fluid row align-items-start">
+      <div class="container col-6 row justify-content-around mx-auto mt-5">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Date</th>
+            <th scope="col">Customer</th>
+            <th scope="col">Tracking ID</th>
+            <th scope="col">State</th>
+            <th scope="col">Edit state</th>
+          </tr>
+          </thead>
+          <tbody>
+          <ng-container *ngFor="let order of orders; index as i">
+            <tr>
+              <td scope="row">{{this.i+1}}</td>
+              <td>{{this.order.orderDate | date}}</td>
+              <td>{{this.order.customer.firstName}} {{this.order.customer.lastName}} <br>
+                {{this.order.customer.street}} {{this.order.customer.postalCode}} <br>
+                {{this.order.customer.email}} <br>
+                {{this.order.customer.tel}}</td>
+              <td>{{this.order.trackingId}}</td>
+              <td>{{this.order.state}}</td>
+              <td>
+                <button type="button" class="btn btn-dark" (click)="editState(order)">Edit</button>
+              </td>
+            </tr>
+          </ng-container>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </ng-container>

@@ -14,7 +14,7 @@
 
 <div *ngIf="news || create == true">
   <div class="modal-header">
-    <h4 class="modal-title" *ngIf="!create">Edit News: {{news.id}}</h4>
+    <h4 class="modal-title" *ngIf="!create">Edit News: {{news.title}}</h4>
     <h4 class="modal-title" *ngIf="create">Create New News</h4>
     <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>

@@ -5,6 +5,9 @@ import {LoginService} from '../../shared/services/login.service';
 import {Order} from '../../shared/models/order';
 import {OrderService} from '../../shared/services/order.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {FaqEditComponent} from '../faq-edit/faq-edit.component';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {OrderEditComponent} from '../order-edit/order-edit.component';
 
 @Component({
   selector: 'app-admin',
@@ -17,17 +20,17 @@ export class AdminComponent implements OnInit {
   public loggedIn = false;
   private admin: Admin;
   private name: string;
-  public orders: Order[];
   password = new FormControl('oro');
   username = new FormControl('Oro');
   public EditContent: FormGroup;
 
-  constructor(private loginService: LoginService, private orderService: OrderService) { }
+  constructor(private loginService: LoginService,
+              private modalService: NgbModal,
+              private orderService: OrderService,
+              private router: Router) { }
 
   ngOnInit(): void {
-    this.orderService.getOrders().subscribe(orders => {
-      this.orders = orders;
-    });
+
   }
 
   submit() {
@@ -37,14 +40,17 @@ export class AdminComponent implements OnInit {
       console.log(admin);
       this.admin = admin;
 
-      if(this.admin.username == this.username.value && this.password.value == this.admin.password){
+      if(this.admin.username === this.username.value && this.password.value == this.admin.password){
         this.loggedIn = true;
-        console.log("Logged in: " +this.loggedIn);
+        this.router.navigateByUrl('/manageOrders');
+        console.log('Logged in: ' + this.loggedIn);
       }
 
-      if (this.loggedIn == false) {
+      if (this.loggedIn === false) {
         console.log('Validierung fehlgeschlagen');
       }
     });
   }
+
+
 }

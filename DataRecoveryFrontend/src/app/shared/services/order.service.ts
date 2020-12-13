@@ -30,7 +30,7 @@ export class OrderService {
     return this.http.post(this.backendUrl + 'orders/', order);
   }
 
-  deleteOrder(id: Order): Observable<any> {
+  deleteOrder(id: number): Observable<any> {
     return this.http.delete(`${this.backendUrl + 'orders/'}${id}`);
   }
 }

@@ -19,43 +19,6 @@
   </div>
 </ng-container>
 
-<ng-container *ngIf="this.loggedIn">
-  <div class="container-fluid row  align-items-start">
-    <div class="container col-6 row justify-content-around mx-auto mt-5">
-      <button type="button" class="btn btn-primary" routerLink="/editFaqs">Edit FAQ</button>
-      <button type="button" class="btn btn-primary" routerLink="/editProducts">Edit Products</button>
-      <button type="button" class="btn btn-primary" routerLink="/manageAdmins">Manage Admins</button>
-      <button type="button" class="btn btn-primary" routerLink="/">Manage Order</button>
-    </div>
-  </div>
-
-  <div class="container-fluid row h-75 align-items-start">
-    <div class="container col-6 row justify-content-around mx-auto mt-5">
-      <table class="table table-striped">
-        <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Date</th>
-          <th scope="col">Customer</th>
-          <th scope="col">Tracking ID</th>
-        </tr>
-        </thead>
-        <tbody>
-        <ng-container *ngFor="let order of orders; index as i">
-          <tr>
-            <td scope="row">{{this.i+1}}</td>
-            <td>{{this.order.orderDate | date}}</td>
-            <td>{{this.order.customer.firstName}} {{this.order.customer.lastName}}</td>
-            <td>{{this.order.trackingId}}</td>
-          </tr>
-        </ng-container>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-
-</ng-container>
 
 
 

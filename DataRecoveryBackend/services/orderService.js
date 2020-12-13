@@ -37,9 +37,8 @@ exports.saveNewOrder = (order, callback) => {
 };
 
 exports.deleteOrderById = (id, callback) => {
-    db.orders.findByPk(id,{include: [db.customers,db.products]})
+    db.orders.findByPk(id)
         .then(order => order.destroy())
-        .exec()
         .then(result => {
             console.log(result);
             callback(null, result);

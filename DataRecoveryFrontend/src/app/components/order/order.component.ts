@@ -21,7 +21,7 @@ export class OrderComponent implements OnInit {
   }
 
   submitPostalCode() {
-    console.log(this.postalCode.value); //88433
+    console.log(this.postalCode.value);
     console.log(this.trackingId.value);
     this.loginService.validateTrackingId(this.trackingId.value,parseInt(this.postalCode.value)).subscribe( order => {
   console.log(order);
@@ -29,7 +29,7 @@ export class OrderComponent implements OnInit {
       if(this.order.trackingId == this.trackingId.value && parseInt(this.postalCode.value) == this.order.customer.postalCode ){
         this.loggedIn = true;
       }else{
-        console.log('Falsche Tracking ID');
+        console.log('Falsche Tracking ID oder Postleitzahl');
       }
     });
   }

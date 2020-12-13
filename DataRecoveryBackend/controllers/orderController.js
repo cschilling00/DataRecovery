@@ -62,7 +62,7 @@ router.patch('/:orderId', function(req, res) {
 });
 
 router.delete('/:orderId', function (req, res){
-    orderService.deleteOrderById(req.params.customerId,(err,data) => {
+    orderService.deleteOrderById(req.params.orderId,(err,data) => {
         if (err) {
             res.status(500).json({
                 error: err
@@ -72,10 +72,6 @@ router.delete('/:orderId', function (req, res){
             res.status(200).json(data);
         }
     })
-    console.log(req.params.orderId);
-    db.orders.findByPk(req.params.orderId)
-        .then(order => order.destroy())
-        .then(order => res.sendStatus(200))
 });
 
 module.exports = router;

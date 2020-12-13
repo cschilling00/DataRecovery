@@ -14,7 +14,7 @@
 
 <div *ngIf="product || create == true">
   <div class="modal-header">
-    <h4 class="modal-title" *ngIf="!create">Edit Product: {{product.id}}</h4>
+    <h4 class="modal-title" *ngIf="!create">Edit Product: {{product.productName}}</h4>
     <h4 class="modal-title" *ngIf="create">Create New Product</h4>
     <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
@@ -25,19 +25,19 @@
       <label class="form">
         <form [formGroup]="EditForm" class="form-group">
           <div class="form-row">
-            <div class="col-lg-4">
+            <div>
               <label>Productname:</label>
               <input class="form-control" type="text" formControlName="productName">
             </div>
           </div>
           <div class="form-row">
-            <div class="col-lg-4">
+            <div>
               <label>Price:</label>
               <input class="form-control" type="text" formControlName="price">
             </div>
           </div>
           <div class="form-row">
-            <div class="col-lg-4">
+            <div>
               <label>Category:</label>
               <input class="form-control" type="text" formControlName="category">
             </div>
