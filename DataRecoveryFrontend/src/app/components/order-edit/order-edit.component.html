@@ -1,0 +1,48 @@
+<ng-template #deleteOrderTemplate let-modal>
+  <div class="modal-body">
+    <p><strong>Are you sure you want to delete Order <span class="text-danger">{{order.id}}</span></strong></p>
+  </div>
+  <div class="modal-footer">
+    <div class="mr-auto">
+      <button type="button" class="btn btn-outline-secondary float-left" (click)="modal.dismiss('cancel click')">Cancel</button>
+    </div>
+    <div class="">
+      <button type="button" class="btn btn-danger" (click)="deleteOrder(modal)">Delete</button>
+    </div>
+  </div>
+</ng-template>
+
+<div *ngIf="order">
+  <div class="modal-header">
+    <h4 class="modal-title">Edit State from order Nr. {{order.id}}</h4>
+
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="container-fluid">
+      <label class="form">
+        <form [formGroup]="EditForm" class="form-group">
+          <div class="form-row">
+              <label for="state">State: </label>
+              <select class="form-control" id="state" required formControlName="state">
+                <option *ngFor="let state of orderStates | keyvalue" >{{state.value}}</option>
+              </select>
+          </div>
+        </form>
+      </label>
+
+      <form [formGroup]="EditForm"></form>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="ml-0">
+      <button type="button" class="btn btn-danger" (click)="openConfirm(deleteOrderTemplate)">Delete Order</button>
+    </div>
+    <div class="m-auto">
+      <button type="button" class="btn btn-info" (click)="activeModal.close('Close click')">Close</button>
+    </div>
+      <button type="button" class="btn btn-success" (click)="updateOrder()">Save Order</button>
+  </div>
+</div>
