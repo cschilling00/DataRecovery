@@ -93,7 +93,7 @@
           <div class="form-group">
             <label for="product">Auftrag zur Dattenrettung einer: </label>
             <select class="form-control" id="product" required formControlName="product">
-              <option *ngFor="let product of products" [value]="product">{{product.productName}}</option>
+              <option *ngFor="let product of products" [value]="product.id">{{product.productName}}</option>
             </select>
           </div>
 
@@ -103,7 +103,12 @@
           </div>
 
           <div class="form-group">
-            <label for="city">Postleitzahl / Ort</label>
+            <label for="postalCode">Postleitzahl</label>
+            <input type="text" class="form-control" id="postalCode" required formControlName="postalCode">
+          </div>
+
+          <div class="form-group">
+            <label for="city">Ort</label>
             <input type="text" class="form-control" id="city" required formControlName="city">
           </div>
 
@@ -113,7 +118,7 @@
           </div>
 
 
-          <button type="submit" class="btn btn-success" >Senden</button>
+          <button type="submit" class="btn btn-success" (click)="submitOrder()">Senden</button>
 
         </form>
       </div>

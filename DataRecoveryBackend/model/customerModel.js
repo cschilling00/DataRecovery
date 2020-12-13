@@ -20,9 +20,6 @@ module.exports = (db) => {
         },
         street: {
             type: db.Sequelize.STRING
-        },
-        houseNumber: {
-            type: db.Sequelize.STRING
         }
     });
     return Customer;
