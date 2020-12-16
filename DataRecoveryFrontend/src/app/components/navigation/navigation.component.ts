@@ -18,4 +18,12 @@ export class NavigationComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  scrollToPrice() {
+    const el = document.getElementById('priceList');
+    el.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+      inline: 'nearest'
+    });
+}
 }

@@ -1,8 +1,6 @@
-<nav class="navbar navbar-light navbar-expand-md bg-secondary p-0">
+<nav class="navbar navbar-light navbar-expand-md p-0 m-3">
 
-  <a class="navbar-brand bg-primary p-3" routerLink="home">
-      TOBIAS JUNGBAUER <br>
-      DATENRETTUNGSDIENST <br>
+  <a class="navbar-brand p-3" routerLink="home">
       AmmerseeDatenrettung.de
   </a>
 
@@ -14,29 +12,30 @@
     <ul class="navbar-nav">
       <li ngbNavItem  [ngClass]="currentRoute == '/home' ? 'active-page' : 'not-active'" >
         <a ngbNavLink routerLink="home" (click)="isMenuCollapsed = true">
-          <div class="nav-link-text">Home</div>
+          <div class="nav-link-text">HOME</div>
         </a>
       </li>
-      <li ngbNavItem  [ngClass]="currentRoute == '/order' ? 'active-page' : 'not-active'" >
-        <a ngbNavLink routerLink="order" (click)="isMenuCollapsed = true">
-          <div class="nav-link-text">Order</div>
+      <li ngbNavItem  [ngClass]="currentRoute == '/faq' ? 'active-page' : 'not-active'" >
+        <a ngbNavLink (click)="scrollToPrice()" (click)="isMenuCollapsed = true">
+          <div class="nav-link-text">PREISE</div>
         </a>
       </li>
       <li ngbNavItem  [ngClass]="currentRoute == '/faq' ? 'active-page' : 'not-active'" >
         <a ngbNavLink routerLink="faq" (click)="isMenuCollapsed = true">
-          <div class="nav-link-text">FAQ</div>
+          <div class="nav-link-text">ARBEITSWEISE</div>
         </a>
       </li>
-      <li ngbNavItem  [ngClass]="currentRoute == '/admin' ? 'active-page' : 'not-active'" >
-        <a ngbNavLink routerLink="admin" (click)="isMenuCollapsed = true">
-          <div class="nav-link-text">Admin</div>
+      <li ngbNavItem  [ngClass]="currentRoute == '/faq' ? 'active-page' : 'not-active'" >
+        <a ngbNavLink routerLink="faq" (click)="isMenuCollapsed = true">
+          <div class="nav-link-text">KONTAKT</div>
         </a>
       </li>
     </ul>
   </div>
 </nav>
 
-<router-outlet></router-outlet>
+
+  <router-outlet></router-outlet>
 
 <footer>
   <div class="container text-center">

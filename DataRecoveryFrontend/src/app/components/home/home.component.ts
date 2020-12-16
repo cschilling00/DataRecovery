@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
       postalCode : new FormControl(''),
       tel : new FormControl('')
     });
-    this.innerWidth = window.innerWidth;
+    this.innerWidth = document.documentElement.clientWidth;
     this.newsService.getNews().subscribe(data => {
       this.newsList = data;
     });
@@ -48,7 +48,7 @@ export class HomeComponent implements OnInit {
   }
   @HostListener('window:resize', ['$event'])
   onResize(event) {
-    this.innerWidth = window.innerWidth;
+    this.innerWidth = document.documentElement.clientWidth;
   }
 
   submitOrder() {

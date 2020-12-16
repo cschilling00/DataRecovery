@@ -21,7 +21,6 @@ import { AdminEditComponent } from './components/admin-edit/admin-edit.component
 import { NewsEditComponent } from './components/news-edit/news-edit.component';
 import { OrderEditComponent } from './components/order-edit/order-edit.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +44,7 @@ import { OrderEditComponent } from './components/order-edit/order-edit.component
     HttpClientModule,
     NgbModule,
     NgxWigModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

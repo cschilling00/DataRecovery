@@ -1,10 +1,17 @@
+*{
+  font-family: Quicksand;
+  font-weight: 500;
+}
 
+.navbar-brand{
+  font-weight: bolder;
+}
 .active-page > a{
-  color: white !important;
+  color: #6f6f6f !important;
   font-size: 1.3rem;
 }
 .not-active > a{
-  color: white !important;
+  color: #969696 !important;
   font-size: 1.3rem;
 }
 

@@ -6,6 +6,7 @@
     "start": "nodemon ./app.js"
   },
   "dependencies": {
+    "@eunsatio/ngx-smooth-scroll": "^1.0.5",
     "body-parser": "^1.19.0",
     "debug": "~2.6.9",
     "dotenv": "^8.2.0",

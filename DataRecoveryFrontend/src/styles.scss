@@ -1,8 +1,8 @@
 html, body { height: 100%; }
 body {
+  scroll-behavior: smooth;
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif!important;
+  font-family: 'Segoe UI',Roboto, "Helvetica Neue", sans-serif!important;
 }
-
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
