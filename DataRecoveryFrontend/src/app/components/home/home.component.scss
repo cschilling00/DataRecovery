@@ -30,14 +30,14 @@ svg{
   color: whitesmoke;
 }
 .bg_sec{
-  background-image: url(/assets/hdd.jpg);
+  background-image: url(/assets/flash2.JPG);
   background-attachment: fixed;
   background-size: cover;
   background-repeat: no-repeat;
   /* background: aqua; */
   background-color: #008b41;
   background-blend-mode: color-burn;
-  background-position-y: bottom;
+  background-position: center;
   min-height: 40vh;
   color: whitesmoke;
 }
@@ -46,5 +46,15 @@ svg{
   border-style: solid;
   button{
     font-size: 1.5rem;
+  }
+}
+form{
+  label{
+  }
+  input{
+    margin-bottom: 0.5rem;
+  }
+  select{
+    margin-bottom: 0.5rem;
   }
 }

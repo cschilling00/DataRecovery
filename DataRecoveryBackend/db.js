@@ -54,10 +54,7 @@ sequelize.sync({ force: true })
             {productName: "SD-Karte/ USB-Stick mit bis zu 16GB",price: 100.00, category: "Flash"},
             {productName: "SD-Karte/ USB-Stick mit bis zu 32GB",price: 125.00, category: "Flash"},
             {productName: "SD-Karte/ USB-Stick mit bis zu 64GB",price: 150.00, category: "Flash"},
-            {productName: "SD-Karte/ USB-Stick mit bis zu 128GB",price: 175.00, category: "Flash"},
-            {productName: "formatierte Festplatte (bis 2TB)",price: 79.00, category: "formatierter Datenträger"},
-            {productName: "formatierte SD-Karte (bis 64GB)",price: 39.00, category: "formatierter Datenträger"},
-            {productName: "formatierte USB-Stick (bis 64GB)",price: 39.00, category: "formatierter Datenträger"}
+            {productName: "SD-Karte/ USB-Stick mit bis zu 128GB",price: 175.00, category: "Flash"}
 
         ])
         db.faqs.bulkCreate([

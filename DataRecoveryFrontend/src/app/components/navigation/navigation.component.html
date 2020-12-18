@@ -1,6 +1,6 @@
 <nav class="navbar navbar-light navbar-expand-md p-0 m-3">
 
-  <a class="navbar-brand p-3" routerLink="home">
+  <a class="navbar-brand p-2 " routerLink="home">
       AmmerseeDatenrettung.de
   </a>
 
@@ -15,18 +15,18 @@
           <div class="nav-link-text">HOME</div>
         </a>
       </li>
-      <li ngbNavItem  [ngClass]="currentRoute == '/faq' ? 'active-page' : 'not-active'" >
+      <li ngbNavItem >
         <a ngbNavLink (click)="scrollToPrice()" (click)="isMenuCollapsed = true">
           <div class="nav-link-text">PREISE</div>
         </a>
       </li>
-      <li ngbNavItem  [ngClass]="currentRoute == '/faq' ? 'active-page' : 'not-active'" >
+      <li ngbNavItem>
         <a ngbNavLink routerLink="faq" (click)="isMenuCollapsed = true">
           <div class="nav-link-text">ARBEITSWEISE</div>
         </a>
       </li>
-      <li ngbNavItem  [ngClass]="currentRoute == '/faq' ? 'active-page' : 'not-active'" >
-        <a ngbNavLink routerLink="faq" (click)="isMenuCollapsed = true">
+      <li ngbNavItem>
+        <a ngbNavLink (click)="scrollToContact()" (click)="isMenuCollapsed = true">
           <div class="nav-link-text">KONTAKT</div>
         </a>
       </li>
@@ -36,9 +36,14 @@
 
 
   <router-outlet></router-outlet>
+<ngb-toast class="fixed-bottom text-center m-3" *ngIf="showToast" header="Jetzt Tobias Jungbauer kontaktieren" [autohide]="false" (hidden)="showToast=false">
+  <div class="border-bottom">
 
+  </div>
+  <a class="btn text-light m-3 text-center px-3" href="http://wa.me/04915161408355" target="_blank"><fa-icon class="mr-3" [icon]="faWhatsapp"></fa-icon>Start Chat</a>
+</ngb-toast>
 <footer>
-  <div class="container text-center">
+  <div class="container text-center mt-4">
     <div class="row">
       <div class="col-12 col-md-6">
         <h1>Kontakt</h1>

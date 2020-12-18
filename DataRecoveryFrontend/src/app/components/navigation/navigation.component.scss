@@ -5,6 +5,7 @@
 
 .navbar-brand{
   font-weight: bolder;
+  font-size: 1.7rem;
 }
 .active-page > a{
   color: #6f6f6f !important;
@@ -17,4 +18,46 @@
 
 .navbar-collapse{
   justify-content: flex-end;
+}
+.nav-link-text{
+  font-size: 1rem;
+}
+
+ngb-toast{
+  overflow: hidden;
+  border-radius: 1rem;
+  left: auto;
+  right: 0;
+}
+
+::ng-deep .toast-header{
+  background-color: #095e54!important;
+  color: whitesmoke;
+  padding: 0.6rem;
+  border: 0;
+
+  strong{
+    margin-left: 0.6rem!important;
+    margin-right: 0.6rem!important;
+  }
+
+  button{
+    color: white;
+    margin-right: 0.6rem!important;
+  }
+}
+
+::ng-deep .toast-body{
+
+  div{
+    background-image: url("/assets/wa_bg.png");
+    height: 5rem;
+    background-color: #e5ddd5;
+
+  }
+  background-color: #ffffff;
+  .btn{
+    background-color: #14c656;
+  }
+  padding: 0;
 }

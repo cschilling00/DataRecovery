@@ -13,13 +13,15 @@ import { AdminComponent } from './components/admin/admin.component';
 import {NavigationComponent} from './components/navigation/navigation.component';
 import { OrderComponent } from './components/order/order.component';
 import {NgxWigModule} from 'ngx-wig';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { FaqComponent } from './components/faq/faq.component';
 import { FaqEditComponent } from './components/faq-edit/faq-edit.component';
 import { ProductEditComponent } from './components/product-edit/product-edit.component';
 import { AdminEditComponent } from './components/admin-edit/admin-edit.component';
 import { NewsEditComponent } from './components/news-edit/news-edit.component';
 import { OrderEditComponent } from './components/order-edit/order-edit.component';
+import {FaIconLibrary, FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import {faCheckSquare} from "@fortawesome/free-solid-svg-icons";
 
 @NgModule({
   declarations: [
@@ -36,17 +38,23 @@ import { OrderEditComponent } from './components/order-edit/order-edit.component
     NewsEditComponent,
     OrderEditComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    LayoutModule,
-    HttpClientModule,
-    NgbModule,
-    NgxWigModule,
-    ReactiveFormsModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        LayoutModule,
+        HttpClientModule,
+        NgbModule,
+        NgxWigModule,
+        ReactiveFormsModule,
+        FontAwesomeModule,
+        FormsModule,
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(private library: FaIconLibrary) {
+    library.addIcons(faCheckSquare)
+  }
+}

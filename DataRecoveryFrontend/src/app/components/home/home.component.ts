@@ -24,9 +24,11 @@ export class HomeComponent implements OnInit {
   public products: Product[];
   public product: Product;
   public customer: Customer;
-  OrderForm: FormGroup;
+  orderForm: FormGroup;
+  contactForm: FormGroup;
+  formSelect = 'order';
   ngOnInit() {
-    this.OrderForm = new FormGroup({
+    this.orderForm = new FormGroup({
       firstName : new FormControl(''),
       lastName : new FormControl(''),
       email : new FormControl(''),
@@ -37,6 +39,14 @@ export class HomeComponent implements OnInit {
       postalCode : new FormControl(''),
       tel : new FormControl('')
     });
+    this.contactForm = new FormGroup({
+      firstName : new FormControl(''),
+      lastName : new FormControl(''),
+      email : new FormControl(''),
+      tel : new FormControl(''),
+      message: new FormControl('')
+      }
+    )
     this.innerWidth = document.documentElement.clientWidth;
     this.newsService.getNews().subscribe(data => {
       this.newsList = data;
@@ -44,6 +54,7 @@ export class HomeComponent implements OnInit {
 
     this.productService.getProducts().subscribe(data => {
       this.products = data;
+      //this.products.sort((a,b) => a.price - b.price);
     });
   }
   @HostListener('window:resize', ['$event'])
@@ -52,10 +63,10 @@ export class HomeComponent implements OnInit {
   }
 
   submitOrder() {
-    console.log(this.OrderForm.getRawValue());
-    this.customer = (this.OrderForm.value as Customer);
+    console.log(this.orderForm.getRawValue());
+    this.customer = (this.orderForm.value as Customer);
     console.log(this.customer);
-    const productId = this.OrderForm.get('product').value;
+    const productId = this.orderForm.get('product').value;
     console.log(productId);
     this.productService.getProductById(productId).subscribe(product => {
       this.product = product;
@@ -70,5 +81,10 @@ export class HomeComponent implements OnInit {
         this.orderService.createOrder(order).subscribe(order => console.log(order));
       }
     });
+  }
+
+  selectContactForm(){
+    this.formSelect = 'contact';
+    console.log('selectContact')
   }
 }
